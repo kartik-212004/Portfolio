@@ -1,0 +1,140 @@
+// pages/index.tsx
+import type { NextPage } from "next"
+import Head from "next/head"
+import Image from "next/image"
+import { Github, Linkedin, Mail } from "lucide-react"
+
+const socials = [
+  {
+    icon: Github,
+    href: "https://github.com/yourusername",
+    label: "GitHub",
+  },
+  {
+    icon: Linkedin,
+    href: "https://linkedin.com/in/yourusername",
+    label: "LinkedIn",
+  },
+  {
+    icon: Mail,
+    href: "mailto:your@email.com",
+    label: "Email",
+  },
+]
+
+const skills = [
+  "MERN Stack",
+  "TypeScript",
+  "Next.js",
+  "Tailwind CSS",
+  "Prisma",
+  "Turborepo",
+  "JWT Auth",
+]
+
+const HomePage: NextPage = () => {
+  return (
+    <div className="min-h-screen bg-[#09090b] text-white">
+      <Head>
+        <title>Kartik Bhatt - Full Stack Developer</title>
+        <meta
+          name="description"
+          content="Full Stack Developer specializing in Next.js, TypeScript, and MERN stack"
+        />
+      </Head>
+
+      <main className="container mx-auto px-4 py-16 max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8">
+            <h1 className="text-4xl font-bold mb-4">Kartik Singh</h1>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-semibold text-teal-400">About Me</h2>
+              <p className="text-gray-300 leading-relaxed">
+                Hello! I'm a passionate Full Stack Developer and a 2nd-year
+                Computer Science student from Dehradun, India. I specialize in
+                creating scalable, maintainable, and reliable web applications.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                I actively contribute to open-source projects and have a solid
+                background in building monorepos using Turborepo. Apart from
+                coding, I enjoy exploring cloud technologies, learning new
+                tools, and improving my skills every day.
+              </p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-semibold text-teal-400">
+                What I do?
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                Currently, I'm working on exciting projects using Next.js and
+                Tailwind CSS, focusing on modern, responsive, and highly
+                functional web applications. My work revolves around:
+              </p>
+              <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                <li>
+                  Building full-stack applications with seamless front-end and
+                  back-end integration
+                </li>
+                <li>
+                  Creating monorepos using Turborepo to manage shared components
+                  effectively
+                </li>
+                <li>
+                  Implementing authentication systems using JWT and cookies for
+                  secure user management
+                </li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-semibold text-teal-400">Skills</h2>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-teal-900/30 text-teal-400 rounded-full text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1 space-y-8">
+            <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-teal-400">
+              <Image
+                src="/your-image.jpg"
+                alt="Kartik Singh"
+                layout="fill"
+                objectFit="cover"
+                className="transition-transform hover:scale-105"
+              />
+            </div>
+
+            <div className="flex justify-center gap-4">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-gray-400 hover:text-teal-400 transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-6 h-6" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+export default HomePage

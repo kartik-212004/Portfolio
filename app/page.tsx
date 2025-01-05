@@ -2,6 +2,7 @@ import React from "react"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
 import { FlipWords } from "@/components/ui/flip-words"
 import ShinyText from "@/components/ui/ShinyText"
+import HomePage from "@/components/ui/aboutMe"
 import {
   Code,
   Box,
@@ -74,8 +75,8 @@ const Portfolio = () => {
   ]
 
   const HeroSection = () => (
-    <div className="min-h-screen flex flex-col items-center mt-32 pb-20">
-      <h1 className="text-8xl font-bold text-white">
+    <div className="min-h-screen flex flex-col items-center mt-32 ">
+      <h1 className="text-7xl font-bold text-white">
         I am{" "}
         <FlipWords
           words={[
@@ -85,13 +86,18 @@ const Portfolio = () => {
           ]}
         />
       </h1>
+      
       <ShinyText
         text="Turning ideas into scalable, beautiful, and reliable web applications."
         disabled={false}
         speed={3}
         className="text-2xl mt-14 text-gray-600 text-center max-w-3xl"
       />
+      <div>
+        <HomePage />
+      </div>
     </div>
+    
   )
 
   const TitleComponent = () => (
@@ -106,7 +112,7 @@ const Portfolio = () => {
   )
 
   return (
-    <div className="min-h-screen bg-[#000000]">
+    <div className="min-h-screen bg-[#09090b]">
       <HeroSection />
 
       <ContainerScroll titleComponent={<TitleComponent />}>

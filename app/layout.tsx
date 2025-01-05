@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/ui/navbar"
-import { BackgroundLines } from "@/components/ui/background-lines"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,14 +23,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html className="bg-[#09090b]" lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#09090b]`}
       >
-        <BackgroundLines>
+        <div className="container mx-auto w-[50vw] ">
           <Navbar />
           <div>{children}</div>
-        </BackgroundLines>
+        </div>
       </body>
     </html>
   )
