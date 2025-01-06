@@ -13,6 +13,7 @@ import {
   Globe,
   Heart,
 } from "lucide-react"
+import { MarqueeDemo } from "@/Pages/skills"
 
 interface SidebarItemProps {
   icon?: React.ReactNode
@@ -74,32 +75,6 @@ const Portfolio = () => {
     },
   ]
 
-  const HeroSection = () => (
-    <div className="min-h-screen flex flex-col items-center mt-32 ">
-      <h1 className="text-7xl font-bold text-white">
-        I am{" "}
-        <FlipWords
-          words={[
-            "Kartik Bhatt",
-            "A Full Stack Developer",
-            "A Full Time Student",
-          ]}
-        />
-      </h1>
-      
-      <ShinyText
-        text="Turning ideas into scalable, beautiful, and reliable web applications."
-        disabled={false}
-        speed={3}
-        className="text-2xl mt-14 text-gray-600 text-center max-w-3xl"
-      />
-      <div>
-        <HomePage />
-      </div>
-    </div>
-    
-  )
-
   const TitleComponent = () => (
     <div className="flex items-center space-x-2 flex-col text-8xl text-white">
       <span className="font-medium">
@@ -113,8 +88,9 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-[#09090b]">
-      <HeroSection />
-
+      {/* <HeroSection /> */}
+      <HomePage />
+     
       <ContainerScroll titleComponent={<TitleComponent />}>
         <div className="flex min-h-screen text-gray-300">
           {/* Sidebar */}

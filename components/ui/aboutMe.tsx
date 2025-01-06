@@ -3,7 +3,7 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import { Github, Linkedin, Mail } from "lucide-react"
-
+import { MarqueeDemo } from "@/Pages/skills"
 const socials = [
   {
     icon: Github,
@@ -88,20 +88,6 @@ const HomePage: NextPage = () => {
                 </li>
               </ul>
             </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-teal-400">Skills</h2>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-teal-900/30 text-teal-400 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </section>
           </div>
 
           {/* Sidebar */}
@@ -132,6 +118,12 @@ const HomePage: NextPage = () => {
             </div>
           </div>
         </div>
+        <section className="space-y-4">
+          <h2 className=" font-semibold text-center text-5xl my-6 text-teal-400">
+            S k i l l s
+          </h2>
+          <MarqueeDemo />
+        </section>
       </main>
     </div>
   )

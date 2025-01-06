@@ -1,0 +1,81 @@
+import { cn } from "@/lib/utils"
+import { Marquee } from "@/components/ui/Marques"
+import Image from "next/image"
+// Array of slugs for tools and technologies
+const slugs = [
+  "typescript",
+  "javascript",
+  "dart",
+  "react",
+  "flutter",
+  "android",
+  "html5",
+  "css3",
+  "nodedotjs",
+  "express",
+  "nextdotjs",
+  "prisma",
+  "postgresql",
+  "firebase",
+  "nginx",
+  "vercel",
+  "testinglibrary",
+  "jest",
+  "cypress",
+  "docker",
+  "git",
+  "jira",
+  "github",
+  "gitlab",
+  "androidstudio",
+  "sonarqube",
+  "figma",
+]
+
+// Generate skills array dynamically from slugs
+const skills = slugs.map((slug) => ({
+  name: slug.charAt(0).toUpperCase() + slug.slice(1), // Capitalize the name
+  img: `https://cdn.simpleicons.org/${slug}/${slug}`, // Dynamic image URL
+}))
+
+// Split the skills array into two rows
+const firstRow = skills.slice(0, Math.ceil(skills.length / 2))
+const secondRow = skills.slice(Math.ceil(skills.length / 2))
+
+// SkillCard component
+const SkillCard = ({ img, name }: { img: string; name: string }) => {
+  return (
+    <figure
+      className={cn(
+        "flex  items-center justify-center rounded-full border-2 p-1  shadow-lg flex-row",
+        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+      )}
+    >
+      <div className="flex border border-gray-800 flex-row space-x-3 bg-[#171717] px-3 py-1 rounded-full">
+        <img width={20} height={20} className="h-8 w-8" alt={name} src={img} />
+        <figcaption className="mt-2 text-xs font-medium dark:text-white">
+          {name}
+        </figcaption>
+      </div>
+    </figure>
+  )
+}
+
+// MarqueeDemo component
+export function MarqueeDemo() {
+  return (
+    <div className="relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-[#09090b]">
+      <Marquee pauseOnHover className="[--duration:50s]  ">
+        {firstRow.map((skill) => (
+          <SkillCard key={skill.name} {...skill} />
+        ))}
+      </Marquee>
+      <Marquee reverse pauseOnHover className="[--duration:50s]">
+        {secondRow.map((skill) => (
+          <SkillCard key={skill.name} {...skill} />
+        ))}
+      </Marquee>
+    </div>
+  )
+}
