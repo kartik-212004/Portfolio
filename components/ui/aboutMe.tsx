@@ -1,9 +1,10 @@
 // pages/index.tsx
 import type { NextPage } from "next"
 import Head from "next/head"
+import batman from "./../../public/batman.jpg"
 import Image from "next/image"
 import { Github, Linkedin, Mail } from "lucide-react"
-
+import { MarqueeDemo } from "@/Pages/skills"
 const socials = [
   {
     icon: Github,
@@ -20,16 +21,6 @@ const socials = [
     href: "mailto:your@email.com",
     label: "Email",
   },
-]
-
-const skills = [
-  "MERN Stack",
-  "TypeScript",
-  "Next.js",
-  "Tailwind CSS",
-  "Prisma",
-  "Turborepo",
-  "JWT Auth",
 ]
 
 const HomePage: NextPage = () => {
@@ -88,27 +79,13 @@ const HomePage: NextPage = () => {
                 </li>
               </ul>
             </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-teal-400">Skills</h2>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-teal-900/30 text-teal-400 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </section>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-8">
             <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-teal-400">
               <Image
-                src="/your-image.jpg"
+                src={batman}
                 alt="Kartik Singh"
                 layout="fill"
                 objectFit="cover"
@@ -132,6 +109,12 @@ const HomePage: NextPage = () => {
             </div>
           </div>
         </div>
+        <section className="space-y-4">
+          <h2 className=" font-semibold text-center text-5xl my-6 text-teal-400">
+            S k i l l s
+          </h2>
+          <MarqueeDemo />
+        </section>
       </main>
     </div>
   )
