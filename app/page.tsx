@@ -1,8 +1,7 @@
 import React from "react"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
-import { FlipWords } from "@/components/ui/flip-words"
 import ShinyText from "@/components/ui/ShinyText"
-import HomePage from "@/components/ui/aboutMe"
+import HomePage from "@/Pages/aboutMe"
 import {
   Code,
   Box,
@@ -13,7 +12,6 @@ import {
   Globe,
   Heart,
 } from "lucide-react"
-import { MarqueeDemo } from "@/Pages/skills"
 
 interface SidebarItemProps {
   icon?: React.ReactNode
@@ -88,9 +86,8 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-[#09090b]">
-      {/* <HeroSection /> */}
       <HomePage />
-     
+
       <ContainerScroll titleComponent={<TitleComponent />}>
         <div className="flex min-h-screen text-gray-300">
           {/* Sidebar */}

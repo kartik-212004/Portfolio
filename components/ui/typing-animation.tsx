@@ -1,90 +1,382 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { motion, MotionProps } from "motion/react"
-import { useEffect, useRef, useState } from "react"
+import { AnimatePresence, motion, MotionProps, Variants } from "motion/react"
+import { ElementType } from "react"
 
-interface TypingAnimationProps extends MotionProps {
+type AnimationType = "text" | "word" | "character" | "line"
+type AnimationVariant =
+  | "fadeIn"
+  | "blurIn"
+  | "blurInUp"
+  | "blurInDown"
+  | "slideUp"
+  | "slideDown"
+  | "slideLeft"
+  | "slideRight"
+  | "scaleUp"
+  | "scaleDown"
+
+interface TextAnimateProps extends MotionProps {
+  /**
+   * The text content to animate
+   */
   children: string
+  /**
+   * The class name to be applied to the component
+   */
   className?: string
-  duration?: number
+  /**
+   * The class name to be applied to each segment
+   */
+  segmentClassName?: string
+  /**
+   * The delay before the animation starts
+   */
   delay?: number
-  as?: React.ElementType
+  /**
+   * The duration of the animation
+   */
+  duration?: number
+  /**
+   * Custom motion variants for the animation
+   */
+  variants?: Variants
+  /**
+   * The element type to render
+   */
+  as?: ElementType
+  /**
+   * How to split the text ("text", "word", "character")
+   */
+  by?: AnimationType
+  /**
+   * Whether to start animation when component enters viewport
+   */
   startOnView?: boolean
+  /**
+   * Whether to animate only once
+   */
+  once?: boolean
+  /**
+   * The animation preset to use
+   */
+  animation?: AnimationVariant
 }
 
-export function TypingAnimation({
+const staggerTimings: Record<AnimationType, number> = {
+  text: 0.06,
+  word: 0.05,
+  character: 0.03,
+  line: 0.06,
+}
+
+const defaultContainerVariants = {
+  hidden: { opacity: 1 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+}
+
+const defaultItemVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+}
+
+const defaultItemAnimationVariants: Record<
+  AnimationVariant,
+  { container: Variants; item: Variants }
+> = {
+  fadeIn: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { opacity: 0, y: 20 },
+      show: (delay: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay,
+          duration: 1,
+        },
+      }),
+      exit: {
+        opacity: 0,
+        y: 20,
+        transition: { duration: 1 },
+      },
+    },
+  },
+  blurIn: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { opacity: 0, filter: "blur(10px)" },
+      show: (i: number) => ({
+        opacity: 1,
+        filter: "blur(0px)",
+        transition: {
+          delay: i * 0.1,
+          duration: 1,
+        },
+      }),
+      exit: {
+        opacity: 0,
+        filter: "blur(10px)",
+        transition: { duration: 1 },
+      },
+    },
+  },
+  blurInUp: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { opacity: 0, filter: "blur(10px)", y: 20 },
+      show: () => ({
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+        transition: {
+          y: { duration: 1 },
+          opacity: { duration: 0.4 },
+          filter: { duration: 1 },
+        },
+      }),
+      exit: {
+        opacity: 0,
+        filter: "blur(10px)",
+        y: 20,
+        transition: {
+          y: { duration: 1 },
+          opacity: { duration: 0.4 },
+          filter: { duration: 1 },
+        },
+      },
+    },
+  },
+  blurInDown: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { opacity: 0, filter: "blur(10px)", y: -20 },
+      show: () => ({
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+        transition: {
+          y: { duration: 1 },
+          opacity: { duration: 0.4 },
+          filter: { duration: 1 },
+        },
+      }),
+    },
+  },
+  slideUp: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { y: 20, opacity: 0 },
+      show: (delay: number) => ({
+        y: 0,
+        opacity: 1,
+        transition: {
+          delay,
+          duration: 1,
+        },
+      }),
+      exit: {
+        y: -20,
+        opacity: 0,
+        transition: {
+          duration: 1,
+        },
+      },
+    },
+  },
+  slideDown: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { y: -20, opacity: 0 },
+      show: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 1 },
+      },
+      exit: {
+        y: 20,
+        opacity: 0,
+        transition: { duration: 1 },
+      },
+    },
+  },
+  slideLeft: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { x: 20, opacity: 0 },
+      show: {
+        x: 0,
+        opacity: 1,
+        transition: { duration: 1 },
+      },
+      exit: {
+        x: -20,
+        opacity: 0,
+        transition: { duration: 1 },
+      },
+    },
+  },
+  slideRight: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { x: -20, opacity: 0 },
+      show: {
+        x: 0,
+        opacity: 1,
+        transition: { duration: 1 },
+      },
+      exit: {
+        x: 20,
+        opacity: 0,
+        transition: { duration: 1 },
+      },
+    },
+  },
+  scaleUp: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { scale: 0.5, opacity: 0 },
+      show: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 1,
+          scale: {
+            type: "spring",
+            damping: 15,
+            stiffness: 300,
+          },
+        },
+      },
+      exit: {
+        scale: 0.5,
+        opacity: 0,
+        transition: { duration: 1 },
+      },
+    },
+  },
+  scaleDown: {
+    container: defaultContainerVariants,
+    item: {
+      hidden: { scale: 1.5, opacity: 0 },
+      show: (delay: number) => ({
+        scale: 1,
+        opacity: 1,
+        transition: {
+          delay,
+          duration: 1,
+          scale: {
+            type: "spring",
+            damping: 15,
+            stiffness: 300,
+          },
+        },
+      }),
+      exit: {
+        scale: 1.5,
+        opacity: 0,
+        transition: { duration: 1 },
+      },
+    },
+  },
+}
+
+export function TextAnimate({
   children,
   className,
-  duration = 100,
-  delay = 0,
-  as: Component = "div",
-  startOnView = false,
+  segmentClassName,
+  as: Component = "p",
+  startOnView = true,
+  by = "word",
+  animation = "fadeIn",
   ...props
-}: TypingAnimationProps) {
-  const MotionComponent = motion.create(Component, {
-    forwardMotionProps: true,
-  })
+}: TextAnimateProps) {
+  const MotionComponent = motion.create(Component)
 
-  const [displayedText, setDisplayedText] = useState<string>("")
-  const [started, setStarted] = useState(false)
-  const elementRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    if (!startOnView) {
-      const startTimeout = setTimeout(() => {
-        setStarted(true)
-      }, delay)
-      return () => clearTimeout(startTimeout)
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setStarted(true)
-          }, delay)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [delay, startOnView])
-
-  useEffect(() => {
-    if (!started) return
-
-    let i = 0
-    const typingEffect = setInterval(() => {
-      if (i < children.length) {
-        setDisplayedText(children.substring(0, i + 1))
-        i++
-      } else {
-        clearInterval(typingEffect)
+  // Use provided variants or default variants based on animation type
+  const finalVariants = animation
+    ? {
+        container: {
+          ...defaultItemAnimationVariants[animation].container,
+          show: {
+            ...defaultItemAnimationVariants[animation].container.show,
+            transition: {
+              staggerChildren: staggerTimings[by],
+            },
+          },
+          exit: {
+            ...defaultItemAnimationVariants[animation].container.exit,
+            transition: {
+              staggerChildren: staggerTimings[by],
+              staggerDirection: -1,
+            },
+          },
+        },
+        item: defaultItemAnimationVariants[animation].item,
       }
-    }, duration)
+    : { container: defaultContainerVariants, item: defaultItemVariants }
 
-    return () => {
-      clearInterval(typingEffect)
-    }
-  }, [children, duration, started])
+  let segments: string[] = []
+  switch (by) {
+    case "word":
+      segments = children.split(/(\s+)/)
+      break
+    case "character":
+      segments = children.split("")
+      break
+    case "line":
+      segments = children.split("\n")
+      break
+    case "text":
+    default:
+      segments = [children]
+      break
+  }
 
   return (
-    <MotionComponent
-      ref={elementRef}
-      className={cn(
-        "text-4xl font-bold leading-[5rem] tracking-[-0.02em]",
-        className
-      )}
-      {...props}
-    >
-      {displayedText}
-    </MotionComponent>
+    <AnimatePresence mode="popLayout">
+      <MotionComponent
+        variants={finalVariants.container}
+        initial="hidden"
+        whileInView={startOnView ? "show" : undefined}
+        animate={startOnView ? undefined : "show"}
+        exit="exit"
+        className={cn("whitespace-pre-wrap", className)}
+        {...props}
+      >
+        {segments.map((segment, i) => (
+          <motion.span
+            key={`${by}-${segment}-${i}`}
+            variants={finalVariants.item}
+            custom={i * staggerTimings[by]}
+            className={cn(
+              by === "line" ? "block" : "inline-block whitespace-pre",
+              segmentClassName
+            )}
+          >
+            {segment}
+          </motion.span>
+        ))}
+      </MotionComponent>
+    </AnimatePresence>
   )
 }

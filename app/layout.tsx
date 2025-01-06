@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { ScrollProgress } from "@/components/ui/scrollprogress"
 import "./globals.css"
-import Navbar from "@/components/ui/navbar"
+import Navbar from "@/Pages/navbar"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#09090b]`}
       >
         <div className="container mx-auto w-[50vw] ">
+          <ScrollProgress />
           <Navbar />
           <div>{children}</div>
         </div>

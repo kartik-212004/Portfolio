@@ -1,7 +1,9 @@
 // pages/index.tsx
 import type { NextPage } from "next"
+import { HyperText } from "@/components/ui/Hypertext"
+import { TextAnimate } from "@/components/ui/typing-animation"
 import Head from "next/head"
-import batman from "./../../public/batman.jpg"
+import batman from "@/public/batman.jpg"
 import Image from "next/image"
 import { Github, Linkedin, Mail } from "lucide-react"
 import { MarqueeDemo } from "@/Pages/skills"
@@ -38,10 +40,14 @@ const HomePage: NextPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            <h1 className="text-4xl font-bold mb-4">Kartik Singh</h1>
+            <h1 className="text-4xl font-bold mb-4">
+              <HyperText>Kartik Bhatt</HyperText>
+            </h1>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-teal-400">About Me</h2>
+              <h2 className="text-2xl font-semibold text-teal-400">
+                <TextAnimate>About Me</TextAnimate>
+              </h2>
               <p className="text-gray-300 leading-relaxed">
                 Hello! I'm a passionate Full Stack Developer and a 2nd-year
                 Computer Science student from Dehradun, India. I specialize in
@@ -57,7 +63,7 @@ const HomePage: NextPage = () => {
 
             <section className="space-y-4">
               <h2 className="text-2xl font-semibold text-teal-400">
-                What I do?
+                <TextAnimate> What I do?</TextAnimate>
               </h2>
               <p className="text-gray-300 leading-relaxed">
                 Currently, I'm working on exciting projects using Next.js and
@@ -86,7 +92,7 @@ const HomePage: NextPage = () => {
             <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-teal-400">
               <Image
                 src={batman}
-                alt="Kartik Singh"
+                alt="Kartik Bhatt"
                 layout="fill"
                 objectFit="cover"
                 className="transition-transform hover:scale-105"
@@ -110,8 +116,8 @@ const HomePage: NextPage = () => {
           </div>
         </div>
         <section className="space-y-4">
-          <h2 className=" font-semibold text-center text-5xl my-6 text-teal-400">
-            S k i l l s
+          <h2 className=" font-semibold text-center text-5xl h-24 my-6 text-white">
+            <HyperText>S k i l l s</HyperText>
           </h2>
           <MarqueeDemo />
         </section>
