@@ -1,7 +1,7 @@
 import React from "react"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
-import ShinyText from "@/components/ui/ShinyText"
 import HomePage from "@/Pages/aboutMe"
+import { ShineBorder } from "@/components/ui/ShinyBorder"
 import {
   Code,
   Box,
@@ -74,12 +74,10 @@ const Portfolio = () => {
   ]
 
   const TitleComponent = () => (
-    <div className="flex items-center space-x-2 flex-col text-8xl text-white">
-      <span className="font-medium">
-        <ShinyText text={"Welcome to my world of"} />
-      </span>
+    <div className="flex items-center space-x-2 flex-col text-6xl text-white">
+      <span className="font-medium text-gray-300">Welcome to my world of</span>
       <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-blue-800">
-        <ShinyText className="text-9xl" text={"Innovation"} />
+        Innovation
       </span>
     </div>
   )

@@ -88,17 +88,17 @@ const HomePage: NextPage = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-8">
-            <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-teal-400">
-              <Image
-                src={batman}
-                alt="Kartik Bhatt"
-                layout="fill"
-                objectFit="cover"
-                className="transition-transform hover:scale-105"
-              />
-            </div>
 
+          <div className="lg:col-span-1 space-y-8">
+              <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-teal-400">
+                <Image
+                  src={batman}
+                  alt="Kartik Bhatt"
+                  layout="fill"
+                  objectFit="cover"
+                  className="transition-transform hover:scale-105"
+                />
+              </div>
             <div className="flex justify-center gap-4">
               {socials.map((social) => (
                 <a
