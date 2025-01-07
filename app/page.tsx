@@ -1,7 +1,7 @@
 import React from "react"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
 import HomePage from "@/Pages/aboutMe"
-import GitHubProfile from "@/components/github"
+import GitHubProfile from "@/components/ui/github"
 
 const Portfolio = () => {
   const TitleComponent = () => (
@@ -16,7 +16,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-[#09090b]">
       <HomePage />
-
+      {/* <div className="w-full h-1 bg-gray-700"></div> */}
       <ContainerScroll titleComponent={<TitleComponent />}>
         <GitHubProfile />
       </ContainerScroll>

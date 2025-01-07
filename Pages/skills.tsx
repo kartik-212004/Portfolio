@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils"
 import { Marquee } from "@/components/ui/Marques"
-import Image from "next/image"
 // Array of slugs for tools and technologies
 const slugs = [
   "typescript",
@@ -52,9 +51,9 @@ const SkillCard = ({ img, name }: { img: string; name: string }) => {
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
       )}
     >
-      <div className="flex border border-gray-800 flex-row space-x-3 bg-[#171717] px-3 py-1 rounded-full">
-        <img width={20} height={20} className="h-8 w-8" alt={name} src={img} />
-        <figcaption className="mt-2 text-xs font-medium dark:text-white">
+      <div className="flex border flex-row justify-center items-center border-gray-800  space-x-3 bg-[#171717] px-3 py-2 rounded-full">
+        <img width={15} height={15} className="h-5 w-5" alt={name} src={img} />
+        <figcaption className="flex justify-center items-center text-lg font-normal dark:text-white">
           {name}
         </figcaption>
       </div>

@@ -92,7 +92,7 @@ export function HyperText({
   useEffect(() => {
     if (!isAnimating) return;
 
-    const intervalDuration = duration / (children.length * 10);
+    const intervalDuration = duration / (children.length * 5);
     const maxIterations = children.length;
 
     const interval = setInterval(() => {
