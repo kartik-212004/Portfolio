@@ -58,8 +58,8 @@ export const Header = ({
   translate,
   titleComponent,
 }: {
-  translate: number
-  titleComponent: string
+  translate: MotionValue<number>
+  titleComponent:string | React.ReactNode
 }) => {
   return (
     <motion.div

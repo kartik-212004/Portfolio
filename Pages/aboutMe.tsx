@@ -2,7 +2,7 @@
 import type { NextPage } from "next"
 import { HyperText } from "@/components/ui/Hypertext"
 import { TextAnimate } from "@/components/ui/typing-animation"
-import ScratchToReveal from "@/components/ui/Scratch"
+import Underline from "@/components/ui/underline"
 import Head from "next/head"
 import batman from "@/public/batman.jpg"
 import Image from "next/image"
@@ -50,9 +50,14 @@ const HomePage: NextPage = () => {
                 <TextAnimate>About Me</TextAnimate>
               </h2>
               <p className=" text-lg leading-relaxed">
-                Hello! I'm a passionate Full Stack Developer and a 2nd-year
-                Computer Science student from Dehradun, India. I specialize in
-                creating scalable, maintainable, and reliable web applications.
+                Hello! I&apos;m a passionate{" "}
+                <span>
+                  {" "}
+                  Full Stack Developer <Underline />
+                </span>{" "}
+                and a 2nd-year Computer Science student from Dehradun, India. I
+                specialize in creating scalable, maintainable, and reliable web
+                applications.
               </p>
               <p className=" text-lg leading-relaxed">
                 I actively contribute to open-source projects and have a solid
@@ -67,7 +72,7 @@ const HomePage: NextPage = () => {
                 <TextAnimate> What I do?</TextAnimate>
               </h2>
               <p className=" text-lg leading-relaxed">
-                Currently, I'm working on exciting projects using Next.js and
+                Currently, I&apos;m working on exciting projects using Next.js and
                 Tailwind CSS, focusing on modern, responsive, and highly
                 functional web applications. My work revolves around:
               </p>
