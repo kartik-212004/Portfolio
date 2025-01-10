@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils"
 import { Marquee } from "@/components/ui/Marques"
-// Array of slugs for tools and technologies
 const slugs = [
   "Javascript",
   "html5",
@@ -14,6 +13,7 @@ const slugs = [
   "jira",
   "github",
   "gitlab",
+  "dotenv",
   "figma",
   "React",
   "Node.js",
@@ -29,13 +29,11 @@ const slugs = [
   "Kubernetes",
 ]
 
-// Generate skills array dynamically from slugs
 const skills = slugs.map((slug) => ({
-  name: slug.charAt(0).toUpperCase() + slug.slice(1), // Capitalize the name
-  img: `https://cdn.simpleicons.org/${slug}/${slug}`, // Dynamic image URL
+  name: slug.charAt(0).toUpperCase() + slug.slice(1),
+  img: `https://cdn.simpleicons.org/${slug}/${slug}`,
 }))
 
-// Split the skills array into two rows
 const firstRow = skills.slice(0, Math.ceil(skills.length / 2))
 const secondRow = skills.slice(Math.ceil(skills.length / 2))
 
@@ -49,9 +47,9 @@ const SkillCard = ({ img, name }: { img: string; name: string }) => {
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
       )}
     >
-      <div className="flex border flex-row justify-center items-center border-gray-800  space-x-3 bg-[#171717] px-3 py-2 rounded-full">
+      <div className="flex border flex-row justify-center items-center border-gray-800  space-x-3 bg-[#171717] px-2 py-1 rounded-full">
         <img width={15} height={15} className="h-5 w-5" alt={name} src={img} />
-        <figcaption className="flex justify-center items-center text-lg font-normal dark:text-white">
+        <figcaption className="flex justify-center items-center text-base font-normal dark:text-white">
           {name}
         </figcaption>
       </div>

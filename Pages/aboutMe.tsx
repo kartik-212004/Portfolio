@@ -2,7 +2,6 @@
 import type { NextPage } from "next"
 import { HyperText } from "@/components/ui/Hypertext"
 import { TextAnimate } from "@/components/ui/typing-animation"
-import Underline from "@/components/ui/underline"
 import Head from "next/head"
 import batman from "@/public/batman.jpg"
 import Image from "next/image"
@@ -41,25 +40,25 @@ const HomePage: NextPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-3xl font-bold mb-4">
               <HyperText>K a r t i k&nbsp; B h a t t</HyperText>
             </h1>
 
             <section className="space-y-4 text-[#9898a0]">
-              <h2 className="text-2xl font-semibold text-teal-400">
+              <h2 className="text-xl font-semibold text-teal-400">
                 <TextAnimate>About Me</TextAnimate>
               </h2>
-              <p className=" text-lg leading-relaxed">
+              <p className=" text-base leading-relaxed">
                 Hello! I&apos;m a passionate{" "}
                 <span>
                   {" "}
-                  Full Stack Developer <Underline />
+                  Full Stack Developer
                 </span>{" "}
                 and a 2nd-year Computer Science student from Dehradun, India. I
                 specialize in creating scalable, maintainable, and reliable web
                 applications.
               </p>
-              <p className=" text-lg leading-relaxed">
+              <p className=" text-base leading-relaxed">
                 I actively contribute to open-source projects and have a solid
                 background in building monorepos using Turborepo. Apart from
                 coding, I enjoy exploring cloud technologies, learning new
@@ -68,10 +67,10 @@ const HomePage: NextPage = () => {
             </section>
 
             <section className="space-y-4 text-[#9898a0]">
-              <h2 className="text-2xl font-semibold text-teal-400">
+              <h2 className="text-xl font-semibold text-teal-400">
                 <TextAnimate> What I do?</TextAnimate>
               </h2>
-              <p className=" text-lg leading-relaxed">
+              <p className=" text-base leading-relaxed">
                 Currently, I&apos;m working on exciting projects using Next.js and
                 Tailwind CSS, focusing on modern, responsive, and highly
                 functional web applications. My work revolves around:

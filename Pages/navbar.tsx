@@ -9,17 +9,17 @@ const Navbar = () => {
     </Link>
 
     <div className="hidden md:flex items-center space-x-8">
-      <Link href="/" className="relative group text-lg text-gray-300 font-bold">
+      <Link href="/" className="relative group text-base text-gray-300 font-bold">
         Home
         <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#03adb5] transition-all group-hover:w-full"></span>
       </Link>
 
-      <Link href="/projects" className="relative group text-lg text-gray-300 font-bold">
+      <Link href="/projects" className="relative group text-base text-gray-300 font-bold">
         Projects
         <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03adb5] transition-all group-hover:w-full"></span>
       </Link>
 
-      <Link href="/contact" className="relative group text-lg text-gray-300 font-bold">
+      <Link href="/contact" className="relative group text-base text-gray-300 font-bold">
         Contact
         <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03adb5] transition-all group-hover:w-full"></span>
       </Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
       <a
         href="/Resume.pdf"
         download="Resume.pdf"
-        className="relative group text-lg text-gray-300 font-bold"
+        className="relative group text-base text-gray-300 font-bold"
       >
         Resume
         <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03adb5] transition-all group-hover:w-full"></span>
