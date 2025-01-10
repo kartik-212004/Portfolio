@@ -1,47 +1,39 @@
 import Link from "next/link"
 import { CgProfile } from "react-icons/cg"
-import { FaGithub } from "react-icons/fa"
 
 const Navbar = () => {
   return (
-    <nav className="bg-[#09090b] my-4">
-      <div className="max-w-[1440px] mx-auto">
-        <div className="flex items-center justify-between text-2xl h-12 px-4">
-          <Link href="/" className="text-white">
-            <CgProfile />
-          </Link>
+    <nav className="flex items-center justify-between p-4">
+    <Link href="/" className="text-white">
+      <CgProfile />
+    </Link>
 
-          {/* Main Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/"
-              className="text-lg text-gray-300 hover:text-[#03adb5] font-bold"
-            >
-              Home
-            </Link>
+    <div className="hidden md:flex items-center space-x-8">
+      <Link href="/" className="relative group text-base text-gray-300 font-bold">
+        Home
+        <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#03adb5] transition-all group-hover:w-full"></span>
+      </Link>
 
-            <Link
-              href="/projects"
-              className="text-lg text-gray-300 hover:text-[#03adb5] font-bold"
-            >
-              Projects
-            </Link>
-            <Link
-              href="/contact"
-              className="text-lg text-gray-300 hover:text-[#03adb5] font-bold"
-            >
-              Contact
-            </Link>
-            <Link
-              href="/resume"
-              className="text-lg text-gray-300 hover:text-[#03adb5] font-bold"
-            >
-              Resume
-            </Link>
-          </div>
-        </div>
-      </div>
-    </nav>
+      <Link href="/projects" className="relative group text-base text-gray-300 font-bold">
+        Projects
+        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03adb5] transition-all group-hover:w-full"></span>
+      </Link>
+
+      <Link href="/contact" className="relative group text-base text-gray-300 font-bold">
+        Contact
+        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03adb5] transition-all group-hover:w-full"></span>
+      </Link>
+
+      <a
+        href="/Resume.pdf"
+        download="Resume.pdf"
+        className="relative group text-base text-gray-300 font-bold"
+      >
+        Resume
+        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03adb5] transition-all group-hover:w-full"></span>
+      </a>
+    </div>
+  </nav>
   )
 }
 
