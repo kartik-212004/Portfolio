@@ -1,5 +1,6 @@
 import getmeabeer from "../public/getmeabeer.png"
 import Headerblogs from "../public/Headerblogs.png"
+import workout from '@/public/workout.png'
 import { HyperText } from "@/components/ui/Hypertext"
 import face from "../public/hackaton.png"
 import Image from "next/image"
@@ -34,6 +35,15 @@ const projects = [
     image: face,
     live: null,
     repo: "https://github.com/kartik-212004/hackathon-iiit",
+  },
+  {
+    name: "Your Workout ",
+    techStack: "React / Javascript / Tailwind Css / JWT / HTML",
+    description:
+      "This project is a workout management application that allows users to create, read, update, and delete workout documents",
+    image: workout,
+    live: null,
+    repo: "https://github.com/kartik-212004/Workout-Mern",
   },
 ]
 
