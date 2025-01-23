@@ -2,6 +2,8 @@ import React from "react"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
 import HomePage from "@/Pages/aboutMe"
 import GitHubProfile from "@/components/ui/github"
+import Projects from "@/Pages/projects"
+import ContactPage from "@/Pages/contact"
 
 const Portfolio = () => {
   const TitleComponent = () => (
@@ -20,6 +22,8 @@ const Portfolio = () => {
       <ContainerScroll titleComponent={<TitleComponent />}>
         <GitHubProfile />
       </ContainerScroll>
+      <Projects />
+      <ContactPage />
     </div>
   )
 }

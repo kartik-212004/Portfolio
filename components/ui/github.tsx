@@ -1,65 +1,91 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import {
-  Github,
-  GitPullRequest,
-  Users,
-  Star,
-  GitFork,
-  Box,
-  Database,
-  Globe,
-  Mail,
-  Heart,
-  Code,
-  Zap,
-  Book,
-  Calendar,
-} from "lucide-react"
+import axios from "axios"
+import Image from "next/image"
+import batman from "../../public/batman.jpg"
+import { Star, GitFork } from "lucide-react"
 
-const GitHubProfile = () => {
-  const [userData, setUserData] = useState(null)
-  const [repos, setRepos] = useState([])
-  const [stats, setStats] = useState({
-    totalStars: 0,
-    totalForks: 0,
-    pullRequests: 0,
-  })
+interface GitHubUser {
+  login: string
+  followers: number
+  public_repos: number
+  name: string
+  avatar_url: string
+  bio: string | null
+  public_gists: number
+}
+
+interface Repository {
+  id: number
+  name: string
+  html_url: string
+  description: string | null
+  stargazers_count: number
+  forks_count: number
+  language: string | null
+}
+
+const GitHubProfile: React.FC = () => {
+  const [userData, setUserData] = useState<GitHubUser | null>(null)
+  const [repos, setRepos] = useState<Repository[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        const userResponse = await fetch(
+        // Fetch GitHub user data
+        const userResponse = await axios.get(
           "https://api.github.com/users/kartik-212004"
         )
-        const userData = await userResponse.json()
+        setUserData(userResponse.data)
 
-   
+        // Fetch repositories
+        const repoResponse = await axios.get(
+          "https://api.github.com/users/kartik-212004/repos"
+        )
+        // Sort repositories by activity (stars + forks) and get top 3
+        const sortedRepos = repoResponse.data
+          .sort(
+            (a: Repository, b: Repository) =>
+              b.stargazers_count + b.forks_count -
+              (a.stargazers_count + a.forks_count)
+          )
+          .slice(0, 3)
+        setRepos(sortedRepos)
       } catch (error) {
         console.error("Error fetching GitHub data:", error)
+      } finally {
+        setLoading(false)
       }
     }
 
     fetchGitHubData()
   }, [])
 
+  if (loading) {
+    return <div className="text-gray-300">Loading...</div>
+  }
+
   return (
     <div className="flex min-h-screen text-gray-300 bg-[#0D1117]">
       {/* Sidebar */}
       <div className="w-72 bg-[#161B22] p-6 flex flex-col border-r border-gray-800">
-        <div className="flex items-center space-x-4 mb-6">
+        <div className="flex flex-col items-center space-x-4 mb-6">
           {userData && (
             <>
-              <img
-                src={userData.avatar_url}
-                alt="Profile"
-                className="w-16 h-16 rounded-full border-2 border-indigo-500"
-              />
               <div>
-                <h2 className="font-medium text-xl">
-                  {userData?.name || "Kartik"}
+                <h2 className="font-medium py-2 text-xl">
+                  <Image
+                    alt="Batlam profile"
+                    src={batman}
+                    className="object-cover rounded-lg"
+                    width={400}
+                    height={400}
+                  />
                 </h2>
-                <p className="text-gray-400">@{userData?.login}</p>
+              </div>
+              <div>
+                <p className="text-gray-400">@{userData.login}</p>
               </div>
             </>
           )}
@@ -67,16 +93,11 @@ const GitHubProfile = () => {
 
         <div className="text-sm text-gray-400 mb-6">
           <p className="mb-2">{userData?.bio || "Full Stack Developer"}</p>
-          <p className="flex items-center gap-2">
-            <Calendar size={14} />
-            {userData &&
-              `Joined ${new Date(userData.created_at).toLocaleDateString()}`}
-          </p>
         </div>
 
         {/* GitHub Stats */}
         <div className="space-y-4 mb-8">
-          <div className="bg-[#1C2128] p-4 rounded-lg">
+          <div className="bg-[#1C2128] p-2 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">Repositories</span>
               <span className="text-lg font-bold">
@@ -84,13 +105,15 @@ const GitHubProfile = () => {
               </span>
             </div>
           </div>
-          <div className="bg-[#1C2128] p-4 rounded-lg">
+          <div className="bg-[#1C2128] p-2 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">Stars</span>
-              <span className="text-lg font-bold">{stats.totalStars}</span>
+              <span className="text-lg font-bold">
+                {userData?.public_gists || 0}
+              </span>
             </div>
           </div>
-          <div className="bg-[#1C2128] p-4 rounded-lg">
+          <div className="bg-[#1C2128] p-2 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">Followers</span>
               <span className="text-lg font-bold">
@@ -99,83 +122,25 @@ const GitHubProfile = () => {
             </div>
           </div>
         </div>
-
-        {/* Tech Stack */}
-        <div className="mb-8">
-          <h3 className="text-sm font-medium mb-3">Tech Stack</h3>
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              "React",
-              "Node.js",
-              "TypeScript",
-              "Next.js",
-              "MongoDB",
-              "Tailwind",
-            ].map((tech) => (
-              <span
-                key={tech}
-                className="text-xs px-2 py-1 bg-[#1C2128] rounded-md text-center"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Contact */}
-        <div className="mt-auto">
-          <h3 className="text-sm font-medium mb-3">Connect</h3>
-          <div className="space-y-2">
-            <a
-              href={`mailto:kartik200421@gmail.com`}
-              className="flex items-center space-x-2 text-sm text-gray-400 hover:text-gray-300"
-            >
-              <Mail size={14} />
-              <span>Email</span>
-            </a>
-            <a
-              href="https://github.com/kartik-212004"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-sm text-gray-400 hover:text-gray-300"
-            >
-              <Github size={14} />
-              <span>GitHub</span>
-            </a>
-          </div>
-        </div>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto p-6 bg-[#0D1117]">
-        {/* Contribution Graph - Featured at the top */}
+        {/* Contribution Graph */}
         <div className="bg-[#161B22] rounded-lg p-6 mb-8">
           <h3 className="text-xl font-medium mb-4">GitHub Contributions</h3>
-          <img
+          <Image
             src={`https://ghchart.rshah.org/kartik-212004`}
             alt="GitHub Contribution Graph"
-            className="w-full rounded-lg bg-[#0D1117] p-4"
+            className="w-full rounded-lg p-4"
+            height={100}
+            width={100}
           />
-          <div className="mt-4 text-sm text-gray-400 flex items-center justify-center space-x-4">
-            <span>Less</span>
-            <div className="flex space-x-1">
-              {[1, 2, 3, 4].map((level) => (
-                <div
-                  key={level}
-                  className={`w-3 h-3 rounded-sm`}
-                  style={{
-                    backgroundColor: `rgba(52, 168, 83, ${level * 0.25})`,
-                  }}
-                />
-              ))}
-            </div>
-            <span>More</span>
-          </div>
         </div>
 
         {/* Featured Repositories */}
         <div>
-          <h3 className="text-xl font-medium mb-4">Featured Repositories</h3>
+          <h3 className="text-xl font-medium mb-4">Top 3 Repositories</h3>
           <div className="grid grid-cols-1 gap-4">
             {repos.map((repo) => (
               <a
@@ -192,7 +157,7 @@ const GitHubProfile = () => {
                         {repo.name}
                       </h4>
                       <p className="text-sm text-gray-400">
-                        {repo.description}
+                        {repo.description || "No description available"}
                       </p>
                     </div>
                     <div className="flex space-x-3 text-gray-400">
