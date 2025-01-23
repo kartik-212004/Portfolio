@@ -3,7 +3,7 @@ import { ContainerScroll } from "@/components/ui/container-scroll-animation"
 import HomePage from "@/pages/aboutMe"
 import GitHubProfile from "@/components/ui/github"
 import Projects from "@/pages/projects"
-import ContactPage from "@/pages/contact"
+import ContactForm from "@/pages/contact"
 
 const Portfolio = () => {
   const TitleComponent = () => (
@@ -23,7 +23,7 @@ const Portfolio = () => {
         <GitHubProfile />
       </ContainerScroll>
       <Projects />
-      <ContactPage />
+      <ContactForm />
     </div>
   )
 }
