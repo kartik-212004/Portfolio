@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { ScrollProgress } from "@/components/ui/scrollprogress"
 import "./globals.css"
-import Navbar from "@/pages/navbar"
+import Navbar from "@/components/navbar"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

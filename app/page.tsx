@@ -1,9 +1,9 @@
 import React from "react"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
-import HomePage from "@/pages/aboutMe"
+import HomePage from "@/components/aboutMe"
 import GitHubProfile from "@/components/ui/github"
-import Projects from "@/pages/projects"
-import ContactForm from "@/pages/contact"
+import Projects from "@/components/projects"
+import ContactForm from "@/components/contact"
 
 const Portfolio = () => {
   const TitleComponent = () => (

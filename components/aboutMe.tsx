@@ -4,7 +4,7 @@ import Head from "next/head"
 import batman from "@/public/batman.jpg"
 import Image from "next/image"
 import { Github, Linkedin, Mail } from "lucide-react"
-import { MarqueeDemo } from "@/pages/skills"
+import { MarqueeDemo } from "@/components/skills"
 const socials = [
   {
     icon: Github,
