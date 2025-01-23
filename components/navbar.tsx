@@ -16,6 +16,13 @@ const Navbar = () => {
           Home
           <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#03adb5] transition-all group-hover:w-full"></span>
         </Link>
+        <Link
+          href="/projects"
+          className="relative group text-base text-gray-300 font-bold"
+        >
+          Projects
+          <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#03adb5] transition-all group-hover:w-full"></span>
+        </Link>
 
         <a
           href="/Resume.pdf"

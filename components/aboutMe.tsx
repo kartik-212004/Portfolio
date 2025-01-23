@@ -8,17 +8,17 @@ import { MarqueeDemo } from "@/components/skills"
 const socials = [
   {
     icon: Github,
-    href: "https://github.com/yourusername",
+    href: "https://github.com/kartik-212004",
     label: "GitHub",
   },
   {
     icon: Linkedin,
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://www.linkedin.com/in/kartik212004/",
     label: "LinkedIn",
   },
   {
     icon: Mail,
-    href: "mailto:your@email.com",
+    href: "mailto:kartik200421@gmail.com",
     label: "Email",
   },
 ]
