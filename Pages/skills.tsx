@@ -63,7 +63,7 @@ const SkillCard = ({ img, name }: { img: string; name: string }) => {
     </figure>
   )
 }
-
+export default SkillCard
 // MarqueeDemo component
 export function MarqueeDemo() {
   return (
