@@ -1,14 +1,8 @@
 "use client"
 import React, { useState } from "react"
 import axios from "axios"
-import {
-  FaLinkedin,
-  FaInstagram,
-  FaGithub,
-  FaGamepad,
-  FaYoutube,
-  FaTrash,
-} from "react-icons/fa"
+import { ToastContainer, toast } from "react-toastify"
+import { FaLinkedin, FaInstagram, FaGithub, FaYoutube } from "react-icons/fa"
 
 interface FormData {
   name: string
@@ -18,15 +12,33 @@ interface FormData {
 }
 
 const ContactForm: React.FC = () => {
-  // Use useState with proper typing
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phoneNo: "",
     email: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
-  // Handler to update form data
+  const validateForm = (): boolean => {
+    const { name, email, message } = formData
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    if (!name.trim()) {
+      toast.error("Name is required")
+      return false
+    }
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email address")
+      return false
+    }
+    if (!message.trim()) {
+      toast.error("Message is required")
+      return false
+    }
+    return true
+  }
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -37,25 +49,39 @@ const ContactForm: React.FC = () => {
     }))
   }
 
-  // Submit handler (placeholder)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-    const send = await axios.post("api/nodemailer", { formData })
-    const data = await send.data
-    console.log(data)
+
+    if (!validateForm()) return
+
+    setIsSubmitting(true)
+    try {
+      const { data } = await axios.post("/api/nodemailer", { formData })
+
+      if (data.response) {
+        toast.success("Message Sent Successfully")
+        setFormData({ name: "", phoneNo: "", email: "", message: "" })
+      } else {
+        toast.error(data.errorMessage || "Error Encountered")
+      }
+    } catch (error) {
+      toast.error("Network error. Please try again.")
+      console.log(error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
-    <div className="bg-[#09090b] my-10 text-white">
-      <div className="mx-auto  flex flex-row">
-        {/* Header */}
-        <div className="flex flex-col gap-10 ">
-          <div>
+    <div className="bg-[#09090b] my-10 text-white container mx-auto px-4">
+      <ToastContainer />
+      <div className="flex flex-col md:flex-row gap-10">
+        {/* Contact Info */}
+        <div className="md:w-1/3 flex flex-col gap-6">
+          <div className="mt-5">
             <h2 className="text-xl font-semibold mb-2">Get in Touch</h2>
-            <p className="text-gray-400 w-[90%]">
+            <p className="text-gray-400">
               We look forward to hearing from you. Please contact us via email
-              at
               <a
                 href="mailto:kartik200421@gmail.com"
                 className="text-cyan-400 underline ml-1"
@@ -64,78 +90,82 @@ const ContactForm: React.FC = () => {
               </a>
             </p>
           </div>
-          {/* Social Icons */}
-          <div className="flex space-x-4 ">
-            <a
-              href="https://www.linkedin.com/in/kartik212004/"
-              className="text-gray-400 hover:text-white text-xl"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              href="https://www.instagram.com/karrtikbhatt"
-              className="text-gray-400 hover:text-white text-xl"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://www.github.com/kartik-212004"
-              className="text-gray-400 hover:text-white text-xl"
-            >
-              <FaGithub />
-            </a>
 
-            <a
-              href="https://www.youtube.com/@kartikbhatt9892"
-              className="text-gray-400 hover:text-white text-xl"
-            >
-              <FaYoutube />
-            </a>
+          {/* Social Icons */}
+          <div className="flex space-x-4">
+            {[
+              {
+                Icon: FaLinkedin,
+                url: "https://www.linkedin.com/in/kartik212004/",
+              },
+              {
+                Icon: FaInstagram,
+                url: "https://www.instagram.com/karrtikbhatt",
+              },
+              { Icon: FaGithub, url: "https://www.github.com/kartik-212004" },
+              {
+                Icon: FaYoutube,
+                url: "https://www.youtube.com/@kartikbhatt9892",
+              },
+            ].map(({ Icon, url }) => (
+              <a
+                key={url}
+                href={url}
+                aria-label={`Visit my ${Icon.name} profile`}
+                className="text-gray-400 hover:text-white text-xl transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon />
+              </a>
+            ))}
           </div>
         </div>
+
         {/* Form */}
-        <div className="w-[60vw]">
-          <form
-            onSubmit={handleSubmit}
-            className="bg-[#09090b] grid grid-cols-1 md:grid-cols-2 gap-4"
-          >
+        <div className="md:w-2/3">
+          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
             <input
               name="name"
               value={formData.name}
               onChange={handleChange}
               type="text"
               placeholder="Full Name"
-              className="col-span-2 h-12 bg-[#09090b] md:col-span-1 px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:ring-1"
+              required
+              className="col-span-2 md:col-span-1 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             <input
               name="phoneNo"
               value={formData.phoneNo}
               onChange={handleChange}
-              type="text"
+              type="tel"
               placeholder="Phone No"
-              className="col-span-2 h-12 bg-[#09090b] md:col-span-1 px-3 py-2  rounded text-gray-300 border-[#27272a] border focus:ring-[0.5]"
+              className="col-span-2 md:col-span-1 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             <input
               name="email"
               value={formData.email}
               onChange={handleChange}
               type="email"
-              placeholder="Email"
-              className="col-span-2 h- bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:ring-1"
+              placeholder="Your Email"
+              required
+              className="col-span-2 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               placeholder="Message"
-              className="col-span-2 h-20 bg-[#09090b] p-3 rounded text-gray-300 border-[#27272a] border focus:ring-1"
+              required
+              className="col-span-2 h-20 bg-[#09090b] p-3 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
               rows={4}
             ></textarea>
             <button
               type="submit"
-              className="col-span-2 bg-[#27272a] h-12 py-3 rounded-lg text-white font-semibold hover:bg-[#161616]"
+              disabled={isSubmitting}
+              className="col-span-2 bg-[#27272a] h-12 py-3 rounded-lg text-white font-semibold hover:bg-[#161616] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit
+              {isSubmitting ? "Sending..." : "Submit"}
             </button>
           </form>
         </div>
