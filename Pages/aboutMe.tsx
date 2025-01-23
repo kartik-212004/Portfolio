@@ -1,12 +1,10 @@
-// pages/index.tsx
-import type { NextPage } from "next"
 import { HyperText } from "@/components/ui/Hypertext"
 import { TextAnimate } from "@/components/ui/typing-animation"
 import Head from "next/head"
 import batman from "@/public/batman.jpg"
 import Image from "next/image"
 import { Github, Linkedin, Mail } from "lucide-react"
-import { MarqueeDemo } from "@/Pages/skills"
+import { MarqueeDemo } from "@/pages/skills"
 const socials = [
   {
     icon: Github,
@@ -25,7 +23,7 @@ const socials = [
   },
 ]
 
-const HomePage: NextPage = () => {
+const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#09090b]  text-white">
       <Head>
@@ -49,11 +47,7 @@ const HomePage: NextPage = () => {
                 <TextAnimate>About Me</TextAnimate>
               </h2>
               <p className=" text-base leading-relaxed">
-                Hello! I&apos;m a passionate{" "}
-                <span>
-                  {" "}
-                  Full Stack Developer
-                </span>{" "}
+                Hello! I&apos;m a passionate <span> Full Stack Developer</span>{" "}
                 and a 2nd-year Computer Science student from Dehradun, India. I
                 specialize in creating scalable, maintainable, and reliable web
                 applications.
@@ -71,8 +65,8 @@ const HomePage: NextPage = () => {
                 <TextAnimate> What I do?</TextAnimate>
               </h2>
               <p className=" text-base leading-relaxed">
-                Currently, I&apos;m working on exciting projects using Next.js and
-                Tailwind CSS, focusing on modern, responsive, and highly
+                Currently, I&apos;m working on exciting projects using Next.js
+                and Tailwind CSS, focusing on modern, responsive, and highly
                 functional web applications. My work revolves around:
               </p>
               <ul className="list-disc list-inside   space-y-2 ml-4">

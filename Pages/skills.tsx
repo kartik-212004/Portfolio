@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Marquee } from "@/components/ui/Marques"
+import Image from "next/image"
 const slugs = [
   "Javascript",
   "html5",
@@ -48,7 +49,13 @@ const SkillCard = ({ img, name }: { img: string; name: string }) => {
       )}
     >
       <div className="flex border flex-row justify-center items-center border-gray-800  space-x-3 bg-[#171717] px-2 py-1 rounded-full">
-        <img width={15} height={15} className="h-5 w-5" alt={name} src={img} />
+        <Image
+          width={15}
+          height={15}
+          className="h-5 w-5"
+          alt={name}
+          src={img}
+        />
         <figcaption className="flex justify-center items-center text-base font-normal dark:text-white">
           {name}
         </figcaption>
