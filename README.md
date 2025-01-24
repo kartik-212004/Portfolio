@@ -94,6 +94,19 @@ Make sure you have the following installed:
    npm install
    ```
 
+### Setting Up Environment Variables
+To configure the Nodemailer API, create a `.env` file in the root directory with the following variables:
+
+```
+EMAIL_FROM=<your-email-address>
+EMAIL_PASSWORD=<your-google-app-password>
+```
+
+- **EMAIL_FROM:** Your email address that will be used to send emails (e.g., `yourname@gmail.com`).
+- **EMAIL_PASSWORD:** Your Google App Password. [Learn how to generate one here](https://support.google.com/accounts/answer/185833?hl=en).
+
+Once the `.env` file is configured, restart the development server for the changes to take effect.
+
 ### Running the Development Server
 Start the development server:
 ```bash
@@ -120,7 +133,6 @@ npm run start
    ```bash
    docker run -p 3000:3000 kartik-portfolio
    ```
-
 
 
 ## 🤝 Contributions
