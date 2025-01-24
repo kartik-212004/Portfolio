@@ -68,12 +68,12 @@ export default SkillCard
 export function MarqueeDemo() {
   return (
     <div className="relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-[#09090b]">
-      <Marquee pauseOnHover className="[--duration:50s]  ">
+      <Marquee pauseOnHover className="[--duration:50s] p-0 sm:p-2 ">
         {firstRow.map((skill) => (
           <SkillCard key={skill.name} {...skill} />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:50s]">
+      <Marquee reverse pauseOnHover className="[--duration:50s] p-0 sm:p-2">
         {secondRow.map((skill) => (
           <SkillCard key={skill.name} {...skill} />
         ))}

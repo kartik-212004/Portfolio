@@ -79,8 +79,10 @@ const ContactForm: React.FC = () => {
         {/* Contact Info */}
         <div className="md:w-1/3 flex flex-col gap-6">
           <div className="mt-5">
-            <h2 className="text-xl font-semibold mb-2">Get in Touch</h2>
-            <p className="text-gray-400">
+            <h2 className="text-base sm:text-xl font-semibold mb-2">
+              Get in Touch
+            </h2>
+            <p className="text-gray-400 text-sm sm:text-lg">
               We look forward to hearing from you. Please contact us via email
               <a
                 href="mailto:kartik200421@gmail.com"
@@ -124,7 +126,10 @@ const ContactForm: React.FC = () => {
 
         {/* Form */}
         <div className="md:w-2/3">
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-2 gap-2 sm:gap-4"
+          >
             <input
               name="name"
               value={formData.name}
@@ -163,7 +168,7 @@ const ContactForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="col-span-2 bg-[#27272a] h-12 py-3 rounded-lg text-white font-semibold hover:bg-[#161616] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="col-span-2 bg-[#27272a] h-8 sm:h-12 sm:py-3 rounded-lg text-white font-semibold hover:bg-[#161616] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Sending..." : "Submit"}
             </button>

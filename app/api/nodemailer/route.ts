@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
       from: process.env.EMAIL,
       to: "kartik200421@gmail.com",
       replyTo: formData.email,
-      subject: `New Contact Form Submission from ${formData.name}`,
+      subject: `${formData.name} wants to reach out to you`,
       html: `
         <div>
           <h2>Contact Form Submission</h2>

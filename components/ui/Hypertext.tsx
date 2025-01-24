@@ -1,35 +1,35 @@
-"use client";
+"use client"
 
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, MotionProps } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils"
+import { AnimatePresence, motion, MotionProps } from "motion/react"
+import { useEffect, useRef, useState } from "react"
 
-type CharacterSet = string[] | readonly string[];
+type CharacterSet = string[] | readonly string[]
 
 interface HyperTextProps extends MotionProps {
   /** The text content to be animated */
-  children: string;
+  children: string
   /** Optional className for styling */
-  className?: string;
+  className?: string
   /** Duration of the animation in milliseconds */
-  duration?: number;
+  duration?: number
   /** Delay before animation starts in milliseconds */
-  delay?: number;
+  delay?: number
   /** Component to render as - defaults to div */
-  as?: React.ElementType;
+  as?: React.ElementType
   /** Whether to start animation when element comes into view */
-  startOnView?: boolean;
+  startOnView?: boolean
   /** Whether to trigger animation on hover */
-  animateOnHover?: boolean;
+  animateOnHover?: boolean
   /** Custom character set for scramble effect. Defaults to uppercase alphabet */
-  characterSet?: CharacterSet;
+  characterSet?: CharacterSet
 }
 
 const DEFAULT_CHARACTER_SET = Object.freeze(
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
-) as readonly string[];
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+) as readonly string[]
 
-const getRandomInt = (max: number): number => Math.floor(Math.random() * max);
+const getRandomInt = (max: number): number => Math.floor(Math.random() * max)
 
 export function HyperText({
   children,
@@ -44,56 +44,56 @@ export function HyperText({
 }: HyperTextProps) {
   const MotionComponent = motion.create(Component, {
     forwardMotionProps: true,
-  });
+  })
 
   const [displayText, setDisplayText] = useState<string[]>(() =>
-    children.split(""),
-  );
-  const [isAnimating, setIsAnimating] = useState(false);
-  const iterationCount = useRef(0);
-  const elementRef = useRef<HTMLElement>(null);
+    children.split("")
+  )
+  const [isAnimating, setIsAnimating] = useState(false)
+  const iterationCount = useRef(0)
+  const elementRef = useRef<HTMLElement>(null)
 
   const handleAnimationTrigger = () => {
     if (animateOnHover && !isAnimating) {
-      iterationCount.current = 0;
-      setIsAnimating(true);
+      iterationCount.current = 0
+      setIsAnimating(true)
     }
-  };
+  }
 
   // Handle animation start based on view or delay
   useEffect(() => {
     if (!startOnView) {
       const startTimeout = setTimeout(() => {
-        setIsAnimating(true);
-      }, delay);
-      return () => clearTimeout(startTimeout);
+        setIsAnimating(true)
+      }, delay)
+      return () => clearTimeout(startTimeout)
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setTimeout(() => {
-            setIsAnimating(true);
-          }, delay);
-          observer.disconnect();
+            setIsAnimating(true)
+          }, delay)
+          observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: "-30% 0px -30% 0px" },
-    );
+      { threshold: 0.1, rootMargin: "-30% 0px -30% 0px" }
+    )
 
     if (elementRef.current) {
-      observer.observe(elementRef.current);
+      observer.observe(elementRef.current)
     }
 
-    return () => observer.disconnect();
-  }, [delay, startOnView]);
+    return () => observer.disconnect()
+  }, [delay, startOnView])
 
   // Handle scramble animation
   useEffect(() => {
-    if (!isAnimating) return;
+    if (!isAnimating) return
 
-    const intervalDuration = duration / (children.length * 5);
-    const maxIterations = children.length;
+    const intervalDuration = duration / (children.length * 5)
+    const maxIterations = children.length
 
     const interval = setInterval(() => {
       if (iterationCount.current < maxIterations) {
@@ -102,24 +102,27 @@ export function HyperText({
             letter === " "
               ? letter
               : index <= iterationCount.current
-                ? children[index]
-                : characterSet[getRandomInt(characterSet.length)],
-          ),
-        );
-        iterationCount.current = iterationCount.current + 0.1;
+              ? children[index]
+              : characterSet[getRandomInt(characterSet.length)]
+          )
+        )
+        iterationCount.current = iterationCount.current + 0.1
       } else {
-        setIsAnimating(false);
-        clearInterval(interval);
+        setIsAnimating(false)
+        clearInterval(interval)
       }
-    }, intervalDuration);
+    }, intervalDuration)
 
-    return () => clearInterval(interval);
-  }, [children, duration, isAnimating, characterSet]);
+    return () => clearInterval(interval)
+  }, [children, duration, isAnimating, characterSet])
 
   return (
     <MotionComponent
       ref={elementRef}
-      className={cn("overflow-hidden py-2 text-4xl font-bold", className)}
+      className={cn(
+        "overflow-hidden py-2 text-xl sm:text-4xl font-bold",
+        className
+      )}
       onMouseEnter={handleAnimationTrigger}
       {...props}
     >
@@ -134,5 +137,5 @@ export function HyperText({
         ))}
       </AnimatePresence>
     </MotionComponent>
-  );
+  )
 }

@@ -18,7 +18,6 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-[#09090b]">
       <HomePage />
-      {/* <div className="w-full h-1 bg-gray-700"></div> */}
       <ContainerScroll titleComponent={<TitleComponent />}>
         <GitHubProfile />
       </ContainerScroll>

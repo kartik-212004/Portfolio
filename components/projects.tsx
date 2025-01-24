@@ -1,6 +1,6 @@
 import getmeabeer from "../public/getmeabeer.png"
 import Headerblogs from "../public/Headerblogs.png"
-import workout from '@/public/workout.png'
+import workout from "@/public/workout.png"
 import { HyperText } from "@/components/ui/Hypertext"
 import face from "../public/hackaton.png"
 import Image from "next/image"
@@ -49,19 +49,19 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="text-gray-200">
+    <div className="text-gray-200 mx-4 sm:mx-0">
       <div className="w-full flex  justify-center items-center">
         {" "}
-        <HyperText className="my-4">P R O J E C T S</HyperText>
+        <HyperText className="sm:my-4">P R O J E C T S</HyperText>
       </div>
-      <div className="grid w-full min-h-max grid-cols-2 grid-rows-2 gap-8">
+      <div className="grid w-full min-h-max grid-cols-1 sm:grid-cols-2 grid-rows-1 sm:grid-rows-2 gap-8">
         {projects.map((project, index) => (
           <div key={index} className="flex flex-col ">
             <div>
               <Image
                 src={project.image}
                 alt={project.name}
-                className="max-w-full h-60 rounded-lg"
+                className="sm:max-w-full  sm:h-60 rounded-lg"
               />
             </div>
             <div className="font-normal pt-6">{project.name}</div>

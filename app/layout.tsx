@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#09090b]`}
       >
-        <div className="container mx-auto  md:max-w-[50vw] ">
+        <div className="container mx-auto lg:max-w-[80vw] md:max-w-[90vw] 2xl:max-w-[50vw] ">
           <ScrollProgress />
           <Navbar />
           <div>{children}</div>
