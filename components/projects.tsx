@@ -49,10 +49,10 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="text-gray-200 mx-4 sm:mx-0">
+    <div className="text-gray-200 mx-4 sm:mx-0 ">
       <div className="w-full flex  justify-center items-center">
         {" "}
-        <HyperText className="sm:my-4">P R O J E C T S</HyperText>
+        <HyperText className="sm:my-4 my-8">P R O J E C T S</HyperText>
       </div>
       <div className="grid w-full min-h-max grid-cols-1 sm:grid-cols-2 grid-rows-1 sm:grid-rows-2 gap-8">
         {projects.map((project, index) => (
