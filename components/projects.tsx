@@ -54,7 +54,7 @@ export default function Projects() {
         {" "}
         <HyperText className="sm:my-4">P R O J E C T S</HyperText>
       </div>
-      <div className="grid w-full h-10 sm:min-h-max grid-cols-1 sm:grid-cols-2 grid-rows-1 sm:grid-rows-2 gap-8">
+      <div className="grid w-full min-h-max grid-cols-1 sm:grid-cols-2 grid-rows-1 sm:grid-rows-2 gap-8">
         {projects.map((project, index) => (
           <div key={index} className="flex flex-col ">
             <div>
