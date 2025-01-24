@@ -1,10 +1,11 @@
-import getmeabeer from "../public/getmeabeer.png"
-import Headerblogs from "../public/Headerblogs.png"
+import getmeabeer from "@/public/getmeabeer.png"
+import Headerblogs from "@/public/Headerblogs.png"
 import workout from "@/public/workout.png"
 import { HyperText } from "@/components/ui/Hypertext"
-import face from "../public/hackaton.png"
+import face from "@/public/hackaton.png"
 import Image from "next/image"
 import { Github, Link2Icon } from "lucide-react"
+
 
 const projects = [
   {
