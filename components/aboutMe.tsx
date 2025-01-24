@@ -35,7 +35,7 @@ const HomePage = () => {
       </Head>
 
       <main className="container mx-auto px-4 sm:py-16 max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             <h1 className="text-3xl  font-bold mb-4">
@@ -98,7 +98,7 @@ const HomePage = () => {
                 className="transition-transform hover:scale-105"
               />
             </div>
-            <div className="flex justify-center gap-4">
+            <div className="hidden md:flex justify-center gap-4">
               {socials.map((social) => (
                 <a
                   key={social.label}
