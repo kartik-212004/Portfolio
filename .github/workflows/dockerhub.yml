@@ -36,7 +36,6 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          sudo systemctl start docker
           sudo docker pull kartik200421/portfolio:latest
           sudo docker stop portfolio || true
           sudo docker rm portfolio || true
