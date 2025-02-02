@@ -1,10 +1,11 @@
-import { HyperText } from "@/components/ui/Hypertext"
-import { TextAnimate } from "@/components/ui/typing-animation"
-import Head from "next/head"
-import batman from "@/public/batman.jpg"
-import Image from "next/image"
-import { Github, Linkedin, Mail } from "lucide-react"
-import { MarqueeDemo } from "@/components/skills"
+import { HyperText } from "@/components/ui/Hypertext";
+import { TextAnimate } from "@/components/ui/typing-animation";
+import Head from "next/head";
+import batman from "@/public/batman.jpg";
+import Image from "next/image";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { annotate } from "rough-notation";
+import { MarqueeDemo } from "@/components/skills";
 const socials = [
   {
     icon: Github,
@@ -21,7 +22,7 @@ const socials = [
     href: "mailto:kartik200421@gmail.com",
     label: "Email",
   },
-]
+];
 
 const HomePage = () => {
   return (
@@ -47,42 +48,39 @@ const HomePage = () => {
                 <TextAnimate>About Me</TextAnimate>
               </h2>
               <p className="sm:text-base text-sm leading-relaxed">
-                Hello! I&apos;m a passionate <span> Full Stack Developer</span>{" "}
-                and a 2nd-year Computer Science student from Dehradun, India. I
-                specialize in creating scalable, maintainable, and reliable web
-                applications.
-              </p>
-              <p className="sm:text-base text-sm leading-relaxed">
-                I actively contribute to open-source projects and have a solid
-                background in building monorepos using Turborepo. Apart from
-                coding, I enjoy exploring cloud technologies, learning new
-                tools, and improving my skills every day.
+                Hello! I&apos;m a passionate{" "}
+                <span className="font-semibold text-[#d1d1d6]">
+                  Full Stack Developer
+                </span>{" "}
+                and a{" "}
+                <span className="font-semibold text-[#d1d1d6]">
+                  2nd-year Computer Science student
+                </span>{" "}
+                from India. I love building websites and creating seamless
+                digital experiences. Outside of coding, I’m an avid reader and
+                an adventure enthusiast who enjoys going on treks and exploring
+                new places.
               </p>
             </section>
 
             <section className="space-y-4 text-[#9898a0]">
-              <h2 className="sm:text-xl text-base  font-semibold text-teal-400">
+              <h2 className="sm:text-xl text-base font-semibold text-teal-400">
                 <TextAnimate> What I do?</TextAnimate>
               </h2>
               <p className="sm:text-base text-sm leading-relaxed">
-                Currently, I&apos;m working on exciting projects using Next.js
-                and Tailwind CSS, focusing on modern, responsive, and highly
-                functional web applications. My work revolves around:
+                I actively contribute to open-source projects, primarily in{" "}
+                <span className="font-semibold text-[#d1d1d6]">TypeScript</span>
+                , and I’ve participated in over{" "}
+                <span className="font-semibold text-[#d1d1d6]">
+                  5+ hackathons
+                </span>
+                . I believe in learning in public and constantly expanding my
+                knowledge. In my free time, you’ll often find me browsing{" "}
+                <span className="font-semibold text-[#d1d1d6]">Reddit</span> and{" "}
+                <span className="font-semibold text-[#d1d1d6]">Twitter</span>,
+                discovering new tools, trends, and tips to improve my skills
+                each day.
               </p>
-              <ul className="list-disc list-inside sm:text-base text-sm  space-y-2 ml-4">
-                <li>
-                  Building full-stack applications with seamless front-end and
-                  back-end integration
-                </li>
-                <li>
-                  Creating monorepos using Turborepo to manage shared components
-                  effectively
-                </li>
-                <li>
-                  Implementing authentication systems using JWT and cookies for
-                  secure user management
-                </li>
-              </ul>
             </section>
           </div>
 
@@ -122,7 +120,7 @@ const HomePage = () => {
         </section>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
