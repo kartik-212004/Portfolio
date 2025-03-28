@@ -29,7 +29,7 @@ const SOCIALS = [
 ] as const;
 
 const HighlightedText = ({ children }: { children: React.ReactNode }) => (
-  <span id="selected" className="font-semibold text-[#d1d1d6]">
+  <span id="selected" className="font-medium text-[#d1d1d6]">
     {children}
   </span>
 );
@@ -42,10 +42,10 @@ const Section = ({
   children: React.ReactNode;
 }) => (
   <section className="space-y-4 text-[#9898a0]">
-    <h2 className="sm:text-xl text-base font-semibold text-teal-400">
+    <h2 className="text-xl font-semibold text-teal-400 tracking-tight">
       <TextAnimate>{title}</TextAnimate>
     </h2>
-    <p className="sm:text-base text-sm leading-relaxed">{children}</p>
+    <p className="text-base leading-relaxed">{children}</p>
   </section>
 );
 
@@ -87,10 +87,10 @@ export default function HomePage() {
         />
       </Head>
 
-      <main className="container mx-auto px-4 sm:py-16 max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-12">
-          <div className="lg:col-span-2 space-y-8">
-            <h1 className="text-3xl font-bold mb-4">
+      <main className="container mx-auto px-4 py-12 sm:py-16 max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
+          <div className="lg:col-span-2 space-y-10">
+            <h1 className="text-4xl font-bold tracking-tight mb-6">
               <HyperText>K a r t i k&nbsp; B h a t t</HyperText>
             </h1>
 
@@ -131,8 +131,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        <section className="space-y-4">
-          <h2 className="font-semibold text-center text-5xl sm:h-24 h-12 my-3 sm:my-6 text-white">
+        <section className="space-y-6">
+          <h2 className="font-bold text-center text-4xl sm:text-5xl my-8 sm:my-12 text-white tracking-tight">
             <HyperText>S k i l l s</HyperText>
           </h2>
           <MarqueeDemo />
