@@ -56,7 +56,7 @@ const SkillCard = ({ img, name }: { img: string; name: string }) => {
           alt={name}
           src={img}
         />
-        <figcaption className="flex justify-center items-center text-base font-normal dark:text-white">
+        <figcaption className="flex justify-center items-center text-base font-ubuntu font-medium dark:text-white">
           {name}
         </figcaption>
       </div>

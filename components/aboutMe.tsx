@@ -29,7 +29,7 @@ const SOCIALS = [
 ] as const;
 
 const HighlightedText = ({ children }: { children: React.ReactNode }) => (
-  <span id="selected" className="font-medium text-[#d1d1d6]">
+  <span id="selected" className="font-ubuntu font-medium text-[#d1d1d6]">
     {children}
   </span>
 );
@@ -42,10 +42,10 @@ const Section = ({
   children: React.ReactNode;
 }) => (
   <section className="space-y-4 text-[#9898a0]">
-    <h2 className="text-xl font-semibold text-teal-400 tracking-tight">
+    <h2 className="font-ubuntu text-lg font-semibold sm:text-xl text-teal-400">
       <TextAnimate>{title}</TextAnimate>
     </h2>
-    <p className="text-base leading-relaxed">{children}</p>
+    <p className="font-ubuntu text-base leading-relaxed">{children}</p>
   </section>
 );
 
@@ -90,7 +90,7 @@ export default function HomePage() {
       <main className="container mx-auto px-4 py-12 sm:py-16 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
           <div className="lg:col-span-2 space-y-10">
-            <h1 className="text-4xl font-bold tracking-tight mb-6">
+            <h1 className="font-ubuntu text-4xl font-bold tracking-normal mb-6">
               <HyperText>K a r t i k&nbsp; B h a t t</HyperText>
             </h1>
 
@@ -132,7 +132,7 @@ export default function HomePage() {
         </div>
 
         <section className="space-y-6">
-          <h2 className="font-bold text-center text-4xl sm:text-5xl my-8 sm:my-12 text-white tracking-tight">
+          <h2 className="font-ubuntu font-bold text-center text-4xl sm:text-5xl my-8 sm:my-12 text-white tracking-normal">
             <HyperText>S k i l l s</HyperText>
           </h2>
           <MarqueeDemo />

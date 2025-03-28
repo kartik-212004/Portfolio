@@ -49,29 +49,29 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="text-gray-200 mx-4 sm:mx-0 ">
-      <div className="w-full flex  justify-center items-center">
+    <div className="text-gray-200 mx-4 sm:mx-0">
+      <div className="w-full flex justify-center items-center">
         {" "}
-        <HyperText className="sm:my-4 my-8">P R O J E C T S</HyperText>
+        <HyperText className="font-ubuntu text-4xl font-bold sm:my-4 my-8">P R O J E C T S</HyperText>
       </div>
       <div className="grid w-full min-h-max grid-cols-1 sm:grid-cols-2 grid-rows-1 sm:grid-rows-2 gap-8">
         {projects.map((project, index) => (
-          <div key={index} className="flex flex-col ">
+          <div key={index} className="flex flex-col">
             <div>
               <Image
                 src={project.image}
                 alt={project.name}
-                className="sm:max-w-full  sm:h-60 rounded-lg"
+                className="sm:max-w-full sm:h-60 rounded-lg"
               />
             </div>
-            <div className="font-normal pt-6">{project.name}</div>
-            <div className="text-xs mt-1 text-[#00acb4]">
+            <div className="font-ubuntu font-semibold text-lg pt-6">{project.name}</div>
+            <div className="font-ubuntu text-xs mt-1 text-[#00acb4]">
               {project.techStack}
             </div>
-            <div className="mt-4 text-gray-400 text-sm">
+            <div className="font-ubuntu mt-4 text-gray-400 text-sm">
               {project.description}
             </div>
-            <div className="text-[#00acb4] py-3 text-sm flex flex-row gap-3">
+            <div className="font-ubuntu text-[#00acb4] py-3 text-sm flex flex-row gap-3">
               {project.live ? (
                 <a
                   className="hover:text-[#46edf3] flex flex-row items-center justify-center gap-1"
@@ -86,7 +86,7 @@ export default function Projects() {
               )}
 
               <a
-                className=" hover:text-[#46edf3] flex flex-row items-center justify-center gap-1"
+                className="hover:text-[#46edf3] flex flex-row items-center justify-center gap-1"
                 href={project.repo}
               >
                 <Github className="size-4" /> Repo Url
