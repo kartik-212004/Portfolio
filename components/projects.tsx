@@ -1,7 +1,7 @@
 import getmeabeer from "../public/getmeabeer.png";
 import Headerblogs from "../public/Headerblogs.png";
 import workout from "@/public/workout.png";
-import QuickPost from "/home.png";
+import QuickPost from "@/public/home.png";
 import { HyperText } from "@/components/ui/Hypertext";
 import face from "../public/hackaton.png";
 import Image from "next/image";
