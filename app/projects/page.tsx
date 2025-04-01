@@ -1,13 +1,23 @@
-import getmeabeer from "@/public/getmeabeer.png"
-import Headerblogs from "@/public/Headerblogs.png"
-import workout from "@/public/workout.png"
-import { HyperText } from "@/components/ui/Hypertext"
-import face from "@/public/hackaton.png"
-import Image from "next/image"
-import { Github, Link2Icon } from "lucide-react"
-
+import getmeabeer from "@/public/getmeabeer.png";
+import Headerblogs from "@/public/Headerblogs.png";
+import workout from "@/public/workout.png";
+import { HyperText } from "@/components/ui/Hypertext";
+import QuickPost from "/home.png";
+import face from "@/public/hackaton.png";
+import Image from "next/image";
+import { Github, Link2Icon } from "lucide-react";
 
 const projects = [
+  {
+    name: "Quick Post",
+    techStack:
+      "Next.js / TypeScript / Zod / AWS S3 Bucket / NextAuth / Tailwind CSS / SQL / Docker / PostgreSql / Prisma",
+    description:
+      "Quick Post is a social media application that offers an engaging and interactive experience. Users can create profiles, share multimedia posts, connect with others, and explore dynamic content with real-time updates.",
+    image: QuickPost,
+    live: "https://quick-post-phi.vercel.app",
+    repo: "https://github.com/kartik-212004/Social-media",
+  },
   {
     name: "Get Me A Beer",
     techStack:
@@ -46,7 +56,7 @@ const projects = [
     live: null,
     repo: "https://github.com/kartik-212004/Workout-Mern",
   },
-]
+];
 
 export default function Projects() {
   return (
@@ -97,5 +107,5 @@ export default function Projects() {
         ))}
       </div>
     </div>
-  )
+  );
 }
