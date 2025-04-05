@@ -7,7 +7,7 @@
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@babel/runtime@^7.17.8", "@babel/runtime@^7.26.0":
+"@babel/runtime@^7.12.5", "@babel/runtime@^7.17.8", "@babel/runtime@^7.26.0":
   version "7.26.0"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.26.0.tgz"
   integrity sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==
@@ -1110,6 +1110,11 @@ data-view-byte-offset@^1.0.1:
     call-bound "^1.0.2"
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
+
+date-fns@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/date-fns/-/date-fns-4.1.0.tgz"
+  integrity sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==
 
 debounce@^1.2.1:
   version "1.2.1"
@@ -2713,6 +2718,13 @@ rafor@^1.0.2:
   resolved "https://registry.npmjs.org/rafor/-/rafor-1.0.2.tgz"
   integrity sha512-b8e8/srbSbC0FZTxivEz9pj5z1mQM8CpCEv1aAxuaK26ljSOHJk8AjimcTaHpHIZlwH/VPbli12LuKKrJyyGmA==
 
+react-activity-calendar@^2.7.8:
+  version "2.7.10"
+  resolved "https://registry.npmjs.org/react-activity-calendar/-/react-activity-calendar-2.7.10.tgz"
+  integrity sha512-O6ev2JxbsbmF7hPpRCkiXxQ+vGwXS5iUVwOCqtvlJnGhpyJ3ZJap7/qfIZA0WZcDj4gpQh2Dcvkmwh3yBXRrPQ==
+  dependencies:
+    date-fns "^4.1.0"
+
 react-composer@^5.0.3:
   version "5.0.3"
   resolved "https://registry.npmjs.org/react-composer/-/react-composer-5.0.3.tgz"
@@ -2727,6 +2739,21 @@ react-dom@^18, "react-dom@^18 || ^19", "react-dom@^18.0.0 || ^19.0.0", "react-do
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
+
+react-error-boundary@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/react-error-boundary/-/react-error-boundary-5.0.0.tgz"
+  integrity sha512-tnjAxG+IkpLephNcePNA7v6F/QpWLH8He65+DmedchDwg162JZqx4NmbXj0mlAYVVEd81OW7aFhmbsScYfiAFQ==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
+react-github-calendar@^4.5.6:
+  version "4.5.6"
+  resolved "https://registry.npmjs.org/react-github-calendar/-/react-github-calendar-4.5.6.tgz"
+  integrity sha512-wuLJ+4MDBnli+YWUCprmK+e4ltRaMaB1P4VnYCrbATzFUq46ZDvrXbjQ8uf5aXPbWW8X+ZzSBgGOXGDWgkl0Sw==
+  dependencies:
+    react-activity-calendar "^2.7.8"
+    react-error-boundary "^5.0.0"
 
 react-icons@^5.4.0:
   version "5.4.0"
@@ -2753,7 +2780,7 @@ react-toastify@^11.0.3:
   dependencies:
     clsx "^2.1.1"
 
-react@*, "react@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18, "react@^18 || ^19", react@^18.0.0, "react@^18.0.0 || ^19.0.0", "react@^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", react@^18.3.1, "react@>= 16", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0 || ^19.0.0-0", react@>=16.8, react@>=17.0, react@>=18.0, react@>=18.0.0:
+react@*, "react@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18, "react@^18 || ^19", react@^18.0.0, "react@^18.0.0 || ^19.0.0", "react@^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", react@^18.3.1, "react@>= 16", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0 || ^19.0.0-0", react@>=16.13.1, react@>=16.8, react@>=17.0, react@>=18.0, react@>=18.0.0:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==

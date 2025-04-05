@@ -1,34 +1,35 @@
-"use client"
-import React, { useState, useEffect } from "react"
-import axios from "axios"
-import Image from "next/image"
-import batman from "../../public/batman.jpg"
-import { Star, GitFork } from "lucide-react"
+"use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Image from "next/image";
+import batman from "../../public/batman.jpg";
+import { Star, GitFork } from "lucide-react";
+import GitHubCalendar from "react-github-calendar";
 
 interface GitHubUser {
-  login: string
-  followers: number
-  public_repos: number
-  name: string
-  avatar_url: string
-  bio: string | null
-  public_gists: number
+  login: string;
+  followers: number;
+  public_repos: number;
+  name: string;
+  avatar_url: string;
+  bio: string | null;
+  public_gists: number;
 }
 
 interface Repository {
-  id: number
-  name: string
-  html_url: string
-  description: string | null
-  stargazers_count: number
-  forks_count: number
-  language: string | null
+  id: number;
+  name: string;
+  html_url: string;
+  description: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;
 }
 
 const GitHubProfile: React.FC = () => {
-  const [userData, setUserData] = useState<GitHubUser | null>(null)
-  const [repos, setRepos] = useState<Repository[]>([])
-  const [loading, setLoading] = useState(true)
+  const [userData, setUserData] = useState<GitHubUser | null>(null);
+  const [repos, setRepos] = useState<Repository[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -36,34 +37,35 @@ const GitHubProfile: React.FC = () => {
         // Fetch GitHub user data
         const userResponse = await axios.get(
           "https://api.github.com/users/kartik-212004"
-        )
-        setUserData(userResponse.data)
+        );
+        setUserData(userResponse.data);
 
         // Fetch repositories
         const repoResponse = await axios.get(
           "https://api.github.com/users/kartik-212004/repos"
-        )
+        );
         // Sort repositories by activity (stars + forks) and get top 3
         const sortedRepos = repoResponse.data
           .sort(
             (a: Repository, b: Repository) =>
-              b.stargazers_count + b.forks_count -
+              b.stargazers_count +
+              b.forks_count -
               (a.stargazers_count + a.forks_count)
           )
-          .slice(0, 3)
-        setRepos(sortedRepos)
+          .slice(0, 3);
+        setRepos(sortedRepos);
       } catch (error) {
-        console.error("Error fetching GitHub data:", error)
+        console.error("Error fetching GitHub data:", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchGitHubData()
-  }, [])
+    fetchGitHubData();
+  }, []);
 
   if (loading) {
-    return <div className="text-gray-300">Loading...</div>
+    return <div className="text-gray-300">Loading...</div>;
   }
 
   return (
@@ -129,16 +131,15 @@ const GitHubProfile: React.FC = () => {
         {/* Contribution Graph */}
         <div className="bg-[#161B22] rounded-lg p-6 mb-8">
           <h3 className="text-xl font-medium mb-4">GitHub Contributions</h3>
-          <Image
-            src={`https://ghchart.rshah.org/kartik-212004`}
-            alt="GitHub Contribution Graph"
-            className="w-full rounded-lg p-4"
-            height={100}
-            width={100}
+          <GitHubCalendar
+            username="kartik-212004"
+            colorScheme="dark"
+            fontSize={12}
+            blockSize={12}
+            style={{ width: "100%" }}
           />
         </div>
 
-        {/* Featured Repositories */}
         <div>
           <h3 className="text-xl font-medium mb-4">Top 3 Repositories</h3>
           <div className="grid grid-cols-1 gap-4">
@@ -186,7 +187,7 @@ const GitHubProfile: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default GitHubProfile
+export default GitHubProfile;
