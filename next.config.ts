@@ -1,14 +1,23 @@
-import type { NextConfig } from "next"
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      "avatars.githubusercontent.com",
-      "ghchart.rshah.org",
-      "cdn.simpleicons.org",
-    ], // Add the domain here
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ghchart.rshah.org",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.simpleicons.org",
+      },
+    ],
     dangerouslyAllowSVG: true,
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

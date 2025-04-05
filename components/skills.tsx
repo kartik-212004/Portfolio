@@ -1,44 +1,54 @@
-import { cn } from "@/lib/utils"
-import { Marquee } from "@/components/ui/Marques"
-import Image from "next/image"
+import { cn } from "@/lib/utils";
+import { Marquee } from "@/components/ui/Marques";
+import Image from "next/image";
 const slugs = [
-  "Javascript",
+  "javascript",
+  "typescript",
+  "react",
+  "nextdotjs",
+  "node-dot-js",
+  "express",
   "html5",
   "css3",
   "prisma",
   "postgresql",
+  "mongodb",
+  "mongoose",
+  "redis",
   "vercel",
-  "testinglibrary",
+  "jsonwebtokens",
+  "amazonwebservices",
+  "amazons3",
+  "kubernetes",
   "docker",
-  "git",
-  "jira",
+  "turborepo",
   "github",
+  "githubactions",
   "gitlab",
-  "dotenv",
+  "git",
   "figma",
-  "React",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "Mongoose",
-  "Prisma",
-  "Typescript",
-  "Next.js",
-  "Turborepo",
-  "Redis",
-  "Docker",
-  "Kubernetes",
-]
+  "jira",
+  "slack",
+  "githubactions",
+  "amazonec2",
+  "nginx",
+  "socket",
+  "eslint",
+  "prettier",
+  "tailwindcss",
+  "shadcnui",
+  "pnpm",
+  "vite",
+];
 
 const skills = slugs.map((slug) => ({
   name: slug.charAt(0).toUpperCase() + slug.slice(1),
   img: `https://cdn.simpleicons.org/${slug}/${slug}`,
-}))
+}));
 
-const firstRow = skills.slice(0, Math.ceil(skills.length / 2))
-const secondRow = skills.slice(Math.ceil(skills.length / 2))
+const firstRow = skills.slice(0, Math.ceil(skills.length / 2));
+const secondRow = skills.slice(Math.ceil(skills.length / 2));
 
-// SkillCard component
 const SkillCard = ({ img, name }: { img: string; name: string }) => {
   return (
     <figure
@@ -61,9 +71,9 @@ const SkillCard = ({ img, name }: { img: string; name: string }) => {
         </figcaption>
       </div>
     </figure>
-  )
-}
-export default SkillCard
+  );
+};
+export default SkillCard;
 // MarqueeDemo component
 export function MarqueeDemo() {
   return (
@@ -79,5 +89,5 @@ export function MarqueeDemo() {
         ))}
       </Marquee>
     </div>
-  )
+  );
 }
