@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   return (

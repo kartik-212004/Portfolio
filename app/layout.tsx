@@ -1,9 +1,16 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Ubuntu } from "next/font/google"
+import { Orbitron } from "next/font/google"
 import { ScrollProgress } from "@/components/ui/scrollprogress"
 import "./globals.css"
 import Navbar from "@/components/navbar"
+
+const orbitron = Orbitron({
+  weight: ['400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+  variable: '--font-orbitron',
+})
 
 const ubuntu = Ubuntu({
   weight: ['300', '400', '500', '700'],
@@ -34,7 +41,7 @@ export default function RootLayout({
   return (
     <html className="bg-[#09090b]" lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu.variable} antialiased bg-[#09090b]`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu.variable} ${orbitron.variable} antialiased bg-[#09090b]`}
       >
         <div className="container mx-auto lg:max-w-[80vw] md:max-w-[90vw] 2xl:max-w-[50vw] ">
           <ScrollProgress />

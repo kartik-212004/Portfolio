@@ -93,6 +93,7 @@ export default {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
         ubuntu: ['var(--font-ubuntu)', 'sans-serif'],
+        orbitron: ['var(--font-orbitron)', 'sans-serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],

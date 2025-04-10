@@ -90,10 +90,10 @@ export default function HomePage() {
       <main className="container mx-auto px-4 py-12 sm:py-16 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
           <div className="lg:col-span-2 space-y-10">
-            <h1 className="font-ubuntu text-4xl font-bold tracking-normal mb-2">
+            <h1 className="font-orbitron text-4xl font-bold tracking-tight mb-2">
               <HyperText>K a r t i k&nbsp; B h a t t</HyperText>
             </h1>
-            <div className="flex items-center text-gray-400 text-sm mb-8">
+            <div className="flex items-center font-orbitron text-gray-400 text-sm tracking-wider mb-8">
               <span>Student</span>
               <span className="mx-2 opacity-70">|</span>
               <span>Developer</span>
