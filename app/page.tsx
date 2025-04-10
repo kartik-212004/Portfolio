@@ -8,10 +8,8 @@ import ContactForm from "@/components/contact"
 const Portfolio = () => {
   const TitleComponent = () => (
     <div className="flex items-center space-x-2 flex-col text-6xl mb-11 text-white">
-      <span className="font-medium text-gray-300">Welcome to my world of</span>
-      <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-blue-800">
-        Innovation
-      </span>
+      <span className="font-medium text-gray-300">Welcome to my world of </span>
+      <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-blue-800">Innovation</span>
     </div>
   )
 

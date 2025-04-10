@@ -60,52 +60,55 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="text-gray-200 mx-4 sm:mx-0">
-      <div className="w-full flex justify-center items-center">
-        {" "}
-        <HyperText className="font-ubuntu text-4xl font-bold sm:my-4 my-8">
+    <div className="text-gray-200 container mx-auto px-3 sm:px-6 py-8 sm:py-12 max-w-5xl">
+      <div className="mb-6 sm:mb-8 text-center">
+        <HyperText className="font-ubuntu text-2xl sm:text-3xl font-bold">
           P R O J E C T S
         </HyperText>
       </div>
-      <div className="grid w-full min-h-max grid-cols-1 sm:grid-cols-2 grid-rows-1 sm:grid-rows-2 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
         {projects.map((project, index) => (
-          <div key={index} className="flex flex-col">
-            <div>
+          <div key={index} className="flex flex-col bg-[#121212] rounded-lg overflow-hidden shadow-md">
+            <div className="h-48 sm:h-52 overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.name}
-                className="sm:max-w-full sm:h-60 rounded-lg"
+                className="w-full h-full object-cover"
               />
             </div>
-            <div className="font-ubuntu font-semibold text-lg pt-6">
-              {project.name}
-            </div>
-            <div className="font-ubuntu text-xs mt-1 text-[#00acb4]">
-              {project.techStack}
-            </div>
-            <div className="font-ubuntu mt-4 text-gray-400 text-sm">
-              {project.description}
-            </div>
-            <div className="font-ubuntu text-[#00acb4] py-3 text-sm flex flex-row gap-3">
-              {project.live ? (
+            <div className="p-4">
+              <h3 className="font-ubuntu font-semibold text-base sm:text-lg">
+                {project.name}
+              </h3>
+              <div className="font-ubuntu text-xs text-[#00acb4] mt-1">
+                {project.techStack}
+              </div>
+              <div className="font-ubuntu mt-3 text-gray-400 text-xs sm:text-sm">
+                {project.description}
+              </div>
+              <div className="font-ubuntu text-[#00acb4] mt-4 text-xs sm:text-sm flex flex-row gap-4">
+                {project.live ? (
+                  <a
+                    className="hover:text-[#46edf3] flex flex-row items-center gap-1"
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Link2Icon className="size-3 sm:size-4" /> Live Preview
+                  </a>
+                ) : (
+                  <span className="text-gray-500 text-xs sm:text-sm">Live link unavailable</span>
+                )}
+
                 <a
-                  className="hover:text-[#46edf3] flex flex-row items-center justify-center gap-1"
-                  href={project.live}
+                  className="hover:text-[#46edf3] flex flex-row items-center gap-1"
+                  href={project.repo}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Link2Icon className="size-4" /> Live Preview
+                  <Github className="size-3 sm:size-4" /> Repo Url
                 </a>
-              ) : (
-                <span className="text-gray-500">Live link unavailable</span>
-              )}
-
-              <a
-                className="hover:text-[#46edf3] flex flex-row items-center justify-center gap-1"
-                href={project.repo}
-              >
-                <Github className="size-4" /> Repo Url
-              </a>
+              </div>
             </div>
           </div>
         ))}
