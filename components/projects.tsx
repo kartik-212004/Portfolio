@@ -4,10 +4,21 @@ import workout from "@/public/workout.png";
 import QuickPost from "@/public/home.png";
 import { HyperText } from "@/components/ui/Hypertext";
 import face from "../public/hackaton.png";
+import wallet from "../public/wallet.png";
 import Image from "next/image";
 import { Github, Link2Icon } from "lucide-react";
 
 const projects = [
+  {
+    name: "Laxmi Crypto Wallet",
+    techStack:
+      "Next.js / TypeScript / ethers.js / Blockchain / React Framer Motion / Etherium / Tailwind CSS",
+    description:
+      "A secure, client-side clean AF cryptocurrency wallet for Ethereum and Solana blockchains that doesn't suck.",
+    image: wallet,
+    live: "laxmicryptofunds.vercel.app",
+    repo: "https://github.com/kartik-212004/WalletPaglu",
+  },
   {
     name: "Quick Post",
     techStack:
@@ -68,12 +79,15 @@ export default function Projects() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
         {projects.map((project, index) => (
-          <div key={index} className="flex flex-col bg-[#121212] rounded-lg overflow-hidden shadow-md">
+          <div
+            key={index}
+            className="flex flex-col bg-[#121212] rounded-lg overflow-hidden shadow-md"
+          >
             <div className="h-48 sm:h-52 overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full  object-cover"
               />
             </div>
             <div className="p-4">
@@ -97,7 +111,9 @@ export default function Projects() {
                     <Link2Icon className="size-3 sm:size-4" /> Live Preview
                   </a>
                 ) : (
-                  <span className="text-gray-500 text-xs sm:text-sm">Live link unavailable</span>
+                  <span className="text-gray-500 text-xs sm:text-sm">
+                    Live link unavailable
+                  </span>
                 )}
 
                 <a
