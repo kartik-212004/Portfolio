@@ -92,7 +92,6 @@ export default {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
-        ubuntu: ['var(--font-ubuntu)', 'sans-serif'],
         orbitron: ['var(--font-orbitron)', 'sans-serif'],
       },
       fontSize: {

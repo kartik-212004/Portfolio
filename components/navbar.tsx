@@ -14,14 +14,14 @@ const Navbar = () => {
       <div className=" md:flex items-center space-x-8">
         <Link
           href="/"
-          className="relative hidden md:flex hover:text-[#03adb5]  group text-sm sm:text-base text-gray-300 font-ubuntu font-light"
+          className="relative hidden md:flex hover:text-[#03adb5]  group text-sm sm:text-base text-gray-300 font-sans font-light"
         >
           Home
           <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#03adb5] transition-all group-hover:w-full"></span>
         </Link>
         <Link
           href="/projects"
-          className="relative hover:text-[#03adb5]  group text-sm sm:text-base text-gray-300 font-ubuntu font-light"
+          className="relative hover:text-[#03adb5]  group text-sm sm:text-base text-gray-300 font-sans font-light"
         >
           Projects
           <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#03adb5] transition-all group-hover:w-full"></span>
@@ -30,7 +30,7 @@ const Navbar = () => {
         <a
           href="/Resume.pdf"
           download="Resume.pdf"
-          className="relative hover:text-[#03adb5]  group text-sm sm:text-base text-gray-300 font-ubuntu font-light"
+          className="relative hover:text-[#03adb5]  group text-sm sm:text-base text-gray-300 font-sans font-light"
         >
           Resume
           <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#03adb5] transition-all group-hover:w-full"></span>

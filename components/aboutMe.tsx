@@ -29,7 +29,7 @@ const SOCIALS = [
 ] as const;
 
 const HighlightedText = ({ children }: { children: React.ReactNode }) => (
-  <span id="selected" className="font-ubuntu font-light text-[#d1d1d6]">
+  <span id="selected" className="font-sans font-light text-[#d1d1d6]">
     {children}
   </span>
 );
@@ -42,10 +42,10 @@ const Section = ({
   children: React.ReactNode;
 }) => (
   <section className="space-y-4 text-[#9898a0]">
-    <h2 className="font-ubuntu text-lg font-semibold sm:text-xl text-teal-400">
+    <h2 className="font-sans text-lg font-semibold sm:text-xl text-teal-400">
       <TextAnimate>{title}</TextAnimate>
     </h2>
-    <p className="font-ubuntu text-base leading-relaxed">{children}</p>
+    <p className="font-sans text-base leading-relaxed">{children}</p>
   </section>
 );
 
@@ -137,7 +137,7 @@ export default function HomePage() {
         </div>
 
         <section className="space-y-6">
-          <h2 className="font-ubuntu font-bold text-center text-4xl sm:text-5xl my-8 sm:my-12 text-white tracking-normal">
+          <h2 className="font-sans font-bold text-center text-4xl sm:text-5xl my-8 sm:my-12 text-white tracking-normal">
             <HyperText>S k i l l s</HyperText>
           </h2>
           <MarqueeDemo />

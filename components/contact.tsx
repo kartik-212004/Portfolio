@@ -1,14 +1,14 @@
-"use client"
-import React, { useState } from "react"
-import axios from "axios"
-import { ToastContainer, toast } from "react-toastify"
-import { FaLinkedin, FaInstagram, FaGithub, FaYoutube } from "react-icons/fa"
+"use client";
+import React, { useState } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { FaLinkedin, FaInstagram, FaGithub, FaYoutube } from "react-icons/fa";
 
 interface FormData {
-  name: string
-  phoneNo: string
-  email: string
-  message: string
+  name: string;
+  phoneNo: string;
+  email: string;
+  message: string;
 }
 
 const ContactForm: React.FC = () => {
@@ -17,60 +17,60 @@ const ContactForm: React.FC = () => {
     phoneNo: "",
     email: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const validateForm = (): boolean => {
-    const { name, email, message } = formData
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const { name, email, message } = formData;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!name.trim()) {
-      toast.error("Name is required")
-      return false
+      toast.error("Name is required");
+      return false;
     }
     if (!emailRegex.test(email)) {
-      toast.error("Invalid email address")
-      return false
+      toast.error("Invalid email address");
+      return false;
     }
     if (!message.trim()) {
-      toast.error("Message is required")
-      return false
+      toast.error("Message is required");
+      return false;
     }
-    return true
-  }
+    return true;
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!validateForm()) return
+    if (!validateForm()) return;
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     try {
-      const { data } = await axios.post("/api/nodemailer", { formData })
+      const { data } = await axios.post("/api/nodemailer", { formData });
 
       if (data.response) {
-        toast.success("Message Sent Successfully")
-        setFormData({ name: "", phoneNo: "", email: "", message: "" })
+        toast.success("Message Sent Successfully");
+        setFormData({ name: "", phoneNo: "", email: "", message: "" });
       } else {
-        toast.error(data.errorMessage || "Error Encountered")
+        toast.error(data.errorMessage || "Error Encountered");
       }
     } catch (error) {
-      toast.error("Network error. Please try again.")
-      console.log(error)
+      toast.error("Network error. Please try again.");
+      console.log(error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <div className="bg-[#09090b] my-10 text-white container mx-auto px-4">
@@ -79,14 +79,14 @@ const ContactForm: React.FC = () => {
         {/* Contact Info */}
         <div className="md:w-1/3 flex flex-col gap-6">
           <div className="mt-5">
-            <h2 className="font-ubuntu text-base sm:text-xl font-semibold mb-2">
+            <h2 className="font-sans text-base sm:text-xl font-medium mb-2">
               Get in Touch
             </h2>
-            <p className="font-ubuntu text-gray-400 text-sm sm:text-lg">
+            <p className="font-sans text-gray-400 text-sm sm:text-lg">
               We look forward to hearing from you. Please contact us via email
               <a
                 href="mailto:kartik200421@gmail.com"
-                className="font-ubuntu text-cyan-400 underline ml-1"
+                className="font-sans text-cyan-400 underline ml-1"
               >
                 kartik200421@gmail.com
               </a>
@@ -137,7 +137,7 @@ const ContactForm: React.FC = () => {
               type="text"
               placeholder="Full Name"
               required
-              className="font-ubuntu col-span-2 md:col-span-1 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="font-sans col-span-2 md:col-span-1 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             <input
               name="phoneNo"
@@ -145,7 +145,7 @@ const ContactForm: React.FC = () => {
               onChange={handleChange}
               type="tel"
               placeholder="Phone No"
-              className="font-ubuntu col-span-2 md:col-span-1 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="font-sans col-span-2 md:col-span-1 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             <input
               name="email"
@@ -154,7 +154,7 @@ const ContactForm: React.FC = () => {
               type="email"
               placeholder="Your Email"
               required
-              className="font-ubuntu col-span-2 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="font-sans col-span-2 h-12 bg-[#09090b] px-3 py-2 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             <textarea
               name="message"
@@ -162,13 +162,13 @@ const ContactForm: React.FC = () => {
               onChange={handleChange}
               placeholder="Message"
               required
-              className="font-ubuntu col-span-2 h-20 bg-[#09090b] p-3 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="font-sans col-span-2 h-20 bg-[#09090b] p-3 rounded text-gray-300 border-[#27272a] border focus:outline-none focus:ring-2 focus:ring-cyan-500"
               rows={4}
             ></textarea>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="font-ubuntu col-span-2 bg-[#27272a] h-8 sm:h-12 sm:py-3 rounded-lg text-white font-semibold hover:bg-[#161616] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="font-sans col-span-2 bg-[#27272a] h-8 sm:h-12 sm:py-3 rounded-lg text-white font-semibold hover:bg-[#161616] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Sending..." : "Submit"}
             </button>
@@ -176,7 +176,7 @@ const ContactForm: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

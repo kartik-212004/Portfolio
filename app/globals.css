@@ -6,6 +6,7 @@ body {
   background-color: #09090b;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -90,4 +91,13 @@ body {
     @apply bg-background text-foreground;
     background-color: #09090b;
   }
+}
+
+/* Fix for Orbitron font rendering */
+.font-orbitron {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.02em; /* Slight letter spacing helps with clarity */
+  font-feature-settings: "kern", "liga", "calt";
 }

@@ -120,7 +120,7 @@ export function HyperText({
     <MotionComponent
       ref={elementRef}
       className={cn(
-        "overflow-hidden py-2 text-xl sm:text-4xl font-bold font-ubuntu tracking-normal",
+        "overflow-hidden py-2 text-xl sm:text-4xl font-bold font-sans tracking-normal",
         className
       )}
       onMouseEnter={handleAnimationTrigger}
@@ -130,7 +130,7 @@ export function HyperText({
         {displayText.map((letter, index) => (
           <motion.span
             key={index}
-            className={cn("font-ubuntu", letter === " " ? "w-3" : "")}
+            className={cn("font-sans", letter === " " ? "w-3" : "")}
           >
             {letter.toUpperCase()}
           </motion.span>

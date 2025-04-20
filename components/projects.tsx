@@ -62,7 +62,7 @@ export default function Projects() {
   return (
     <div className="text-gray-200 container mx-auto px-3 sm:px-6 py-8 sm:py-12 max-w-5xl">
       <div className="mb-6 sm:mb-8 text-center">
-        <HyperText className="font-ubuntu text-2xl sm:text-3xl font-bold">
+        <HyperText className="font-sans text-2xl sm:text-3xl font-bold">
           P R O J E C T S
         </HyperText>
       </div>
@@ -77,16 +77,16 @@ export default function Projects() {
               />
             </div>
             <div className="p-4">
-              <h3 className="font-ubuntu font-semibold text-base sm:text-lg">
+              <h3 className="font-sans font-semibold text-base sm:text-lg">
                 {project.name}
               </h3>
-              <div className="font-ubuntu text-xs text-[#00acb4] mt-1">
+              <div className="font-sans text-xs text-[#00acb4] mt-1">
                 {project.techStack}
               </div>
-              <div className="font-ubuntu mt-3 text-gray-400 text-xs sm:text-sm">
+              <div className="font-sans mt-3 text-gray-400 text-xs sm:text-sm">
                 {project.description}
               </div>
-              <div className="font-ubuntu text-[#00acb4] mt-4 text-xs sm:text-sm flex flex-row gap-4">
+              <div className="font-sans text-[#00acb4] mt-4 text-xs sm:text-sm flex flex-row gap-4">
                 {project.live ? (
                   <a
                     className="hover:text-[#46edf3] flex flex-row items-center gap-1"

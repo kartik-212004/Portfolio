@@ -69,7 +69,7 @@ const GitHubProfile: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen text-gray-300 bg-[#0D1117]">
+    <div className="flex min-h-screen text-gray-300 bg-[#0D1117] antialiased subpixel-antialiased">
       {/* Sidebar */}
       <div className="w-72 bg-[#161B22] p-6 flex flex-col border-r border-gray-800">
         <div className="flex flex-col items-center space-x-4 mb-6">
@@ -87,16 +87,18 @@ const GitHubProfile: React.FC = () => {
                 </h2>
               </div>
               <div>
-                <p className="font-orbitron text-gray-400">@{userData.login}</p>
+                <p className="font-kumbh font-medium text-gray-400">
+                  @{userData.login}
+                </p>
               </div>
             </>
           )}
         </div>
 
         <div className="text-sm text-gray-400 mb-6">
-          <p className="mb-2 font-ubuntu leading-relaxed">
-            Kartik | B.Tech Computer Science <br/>
-            Full-stack developer skilled in the MERN stack. Building and deploying responsive web apps with React, Tailwind CSS, Node.
+          <p className="mb-2 font-sans leading-relaxed">
+            <span className="font-medium">Kartik</span> | B.Tech Computer Science <br/>
+            <span className="text-[#9898a0] font-light">Full-stack developer skilled in the MERN stack. Building and deploying responsive web apps with React, Tailwind CSS, Node.</span>
           </p>
         </div>
 
@@ -104,24 +106,24 @@ const GitHubProfile: React.FC = () => {
         <div className="space-y-4 mb-8">
           <div className="bg-[#1C2128] p-2 rounded-lg">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-ubuntu font-medium text-[#d1d1d6]">Repositories</span>
-              <span className="text-lg font-orbitron font-bold text-teal-400">
+              <span className="text-sm font-sans font-normal text-[#d1d1d6]">Repositories</span>
+              <span className="text-lg font-kumbh font-semibold text-teal-400">
                 {userData?.public_repos || 0}
               </span>
             </div>
           </div>
           <div className="bg-[#1C2128] p-2 rounded-lg">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-ubuntu font-medium text-[#d1d1d6]">Stars</span>
-              <span className="text-lg font-orbitron font-bold text-teal-400">
+              <span className="text-sm font-sans font-normal text-[#d1d1d6]">Stars</span>
+              <span className="text-lg font-kumbh font-semibold text-teal-400">
                 {userData?.public_gists || 0}
               </span>
             </div>
           </div>
           <div className="bg-[#1C2128] p-2 rounded-lg">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-ubuntu font-medium text-[#d1d1d6]">Followers</span>
-              <span className="text-lg font-orbitron font-bold text-teal-400">
+              <span className="text-sm font-sans font-normal text-[#d1d1d6]">Followers</span>
+              <span className="text-lg font-kumbh font-semibold text-teal-400">
                 {userData?.followers || 0}
               </span>
             </div>
@@ -133,7 +135,7 @@ const GitHubProfile: React.FC = () => {
       <div className="flex-1 overflow-y-auto p-6 bg-[#0D1117]">
         {/* Contribution Graph */}
         <div className="bg-[#161B22] rounded-lg p-6 mb-8">
-          <h3 className="font-ubuntu text-lg font-semibold sm:text-xl text-teal-400 mb-4">GitHub Contributions</h3>
+          <h3 className="font-sans text-lg font-medium sm:text-xl text-teal-400 mb-4">GitHub Contributions</h3>
           <GitHubCalendar
             username="kartik-212004"
             colorScheme="dark"
@@ -144,7 +146,7 @@ const GitHubProfile: React.FC = () => {
         </div>
 
         <div>
-          <h3 className="font-ubuntu text-lg font-semibold sm:text-xl text-teal-400 mb-4">Top 3 Repositories</h3>
+          <h3 className="font-sans text-lg font-medium sm:text-xl text-teal-400 mb-4">Top 3 Repositories</h3>
           <div className="grid grid-cols-1 gap-4">
             {repos.map((repo) => (
               <a
@@ -157,28 +159,32 @@ const GitHubProfile: React.FC = () => {
                 <div className="bg-[#161B22] p-4 rounded-lg hover:bg-[#1C2128] transition-colors">
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h4 className="font-orbitron font-medium text-blue-400 mb-1">
+                      <h4 className="font-kumbh font-semibold text-blue-400 mb-1">
                         {repo.name}
                       </h4>
-                      <p className="text-sm font-ubuntu leading-relaxed text-[#9898a0]">
+                      <p className="text-sm font-sans font-light leading-relaxed text-[#9898a0]">
                         {repo.description || "No description available"}
                       </p>
                     </div>
                     <div className="flex space-x-3 text-gray-400">
                       <span className="flex items-center space-x-1">
                         <Star size={14} />
-                        <span className="text-xs font-orbitron">{repo.stargazers_count}</span>
+                        <span className="text-xs font-kumbh font-medium">
+                          {repo.stargazers_count}
+                        </span>
                       </span>
                       <span className="flex items-center space-x-1">
                         <GitFork size={14} />
-                        <span className="text-xs font-orbitron">{repo.forks_count}</span>
+                        <span className="text-xs font-kumbh font-medium">
+                          {repo.forks_count}
+                        </span>
                       </span>
                     </div>
                   </div>
                   {repo.language && (
                     <div className="flex items-center space-x-2 mt-3">
                       <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
-                      <span className="text-xs font-orbitron text-gray-400">
+                      <span className="text-xs font-kumbh font-medium text-gray-400">
                         {repo.language}
                       </span>
                     </div>
