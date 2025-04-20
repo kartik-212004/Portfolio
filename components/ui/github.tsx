@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import batman from "../../public/batman.jpg";
-import { Star, GitFork } from "lucide-react";
+import { Star, GitFork, Users, Book, GitBranch } from "lucide-react";
 import GitHubCalendar from "react-github-calendar";
 
 interface GitHubUser {
@@ -26,6 +26,19 @@ interface Repository {
   language: string | null;
 }
 
+const languageColors: { [key: string]: string } = {
+  JavaScript: "#f1e05a",
+  TypeScript: "#3178c6",
+  Python: "#3572A5",
+  Java: "#b07219",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  Ruby: "#701516",
+  "C++": "#f34b7d",
+  PHP: "#4F5D95",
+  Go: "#00ADD8",
+};
+
 const GitHubProfile: React.FC = () => {
   const [userData, setUserData] = useState<GitHubUser | null>(null);
   const [repos, setRepos] = useState<Repository[]>([]);
@@ -34,17 +47,14 @@ const GitHubProfile: React.FC = () => {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        // Fetch GitHub user data
         const userResponse = await axios.get(
           "https://api.github.com/users/kartik-212004"
         );
         setUserData(userResponse.data);
 
-        // Fetch repositories
         const repoResponse = await axios.get(
           "https://api.github.com/users/kartik-212004/repos"
         );
-        // Sort repositories by activity (stars + forks) and get top 3
         const sortedRepos = repoResponse.data
           .sort(
             (a: Repository, b: Repository) =>
@@ -65,133 +75,160 @@ const GitHubProfile: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-gray-300">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#f8f9fa]">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-teal-500"></div>
+      </div>
+    );
   }
 
   return (
-    <div className="flex min-h-screen text-gray-300 bg-[#0D1117] antialiased subpixel-antialiased">
-      {/* Sidebar */}
-      <div className="w-72 bg-[#161B22] p-6 flex flex-col border-r border-gray-800">
-        <div className="flex flex-col items-center space-x-4 mb-6">
-          {userData && (
-            <>
-              <div>
-                <h2 className="font-medium py-2 text-xl">
-                  <Image
-                    alt="Batlam profile"
-                    src={batman}
-                    className="object-cover rounded-lg"
-                    width={400}
-                    height={400}
-                  />
-                </h2>
-              </div>
-              <div>
-                <p className="font-kumbh font-medium text-gray-400">
-                  @{userData.login}
-                </p>
-              </div>
-            </>
-          )}
-        </div>
+    <div className="min-h-screen bg-[#b7b9bb] text-gray-600">
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Profile Section */}
+          <div className="lg:col-span-3">
+            <div className="bg-[#dee1e4] rounded-lg border border-gray-200 p-5 shadow-sm">
+              {userData && (
+                <div className="flex flex-col items-center">
+                  <div className="relative mb-4">
+                    <Image
+                      alt="Profile"
+                      src={batman}
+                      className="rounded-lg object-cover ring-2 ring-gray-100"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h2 className="text-lg font-semibold text-gray-800">
+                    {userData.name || userData.login}
+                  </h2>
+                  <p className="text-gray-500 text-sm mb-4">
+                    @{userData.login}
+                  </p>
 
-        <div className="text-sm text-gray-400 mb-6">
-          <p className="mb-2 font-sans leading-relaxed">
-            <span className="font-medium">Kartik</span> | B.Tech Computer Science <br/>
-            <span className="text-[#9898a0] font-light">Full-stack developer skilled in the MERN stack. Building and deploying responsive web apps with React, Tailwind CSS, Node.</span>
-          </p>
-        </div>
+                  <p className="text-sm text-gray-600 text-center mb-6">
+                    B.Tech Computer Science Student | Full-stack Developer
+                  </p>
 
-        {/* GitHub Stats */}
-        <div className="space-y-4 mb-8">
-          <div className="bg-[#1C2128] p-2 rounded-lg">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-sans font-normal text-[#d1d1d6]">Repositories</span>
-              <span className="text-lg font-kumbh font-semibold text-teal-400">
-                {userData?.public_repos || 0}
-              </span>
-            </div>
-          </div>
-          <div className="bg-[#1C2128] p-2 rounded-lg">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-sans font-normal text-[#d1d1d6]">Stars</span>
-              <span className="text-lg font-kumbh font-semibold text-teal-400">
-                {userData?.public_gists || 0}
-              </span>
-            </div>
-          </div>
-          <div className="bg-[#1C2128] p-2 rounded-lg">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-sans font-normal text-[#d1d1d6]">Followers</span>
-              <span className="text-lg font-kumbh font-semibold text-teal-400">
-                {userData?.followers || 0}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-y-auto p-6 bg-[#0D1117]">
-        {/* Contribution Graph */}
-        <div className="bg-[#161B22] rounded-lg p-6 mb-8">
-          <h3 className="font-sans text-lg font-medium sm:text-xl text-teal-400 mb-4">GitHub Contributions</h3>
-          <GitHubCalendar
-            username="kartik-212004"
-            colorScheme="dark"
-            fontSize={12}
-            blockSize={12}
-            style={{ width: "100%" }}
-          />
-        </div>
-
-        <div>
-          <h3 className="font-sans text-lg font-medium sm:text-xl text-teal-400 mb-4">Top 3 Repositories</h3>
-          <div className="grid grid-cols-1 gap-4">
-            {repos.map((repo) => (
-              <a
-                key={repo.id}
-                href={repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <div className="bg-[#161B22] p-4 rounded-lg hover:bg-[#1C2128] transition-colors">
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <h4 className="font-kumbh font-semibold text-blue-400 mb-1">
-                        {repo.name}
-                      </h4>
-                      <p className="text-sm font-sans font-light leading-relaxed text-[#9898a0]">
-                        {repo.description || "No description available"}
-                      </p>
+                  <div className="grid grid-cols-2 gap-4 w-full">
+                    <div className="bg-gray-50 rounded-lg p-3 text-center border border-gray-100">
+                      <Book className="w-4 h-4 text-teal-600 mx-auto mb-1" />
+                      <span className="block text-lg font-semibold text-gray-800">
+                        {userData?.public_repos || 0}
+                      </span>
+                      <span className="text-xs text-gray-500">Repos</span>
                     </div>
-                    <div className="flex space-x-3 text-gray-400">
-                      <span className="flex items-center space-x-1">
-                        <Star size={14} />
-                        <span className="text-xs font-kumbh font-medium">
-                          {repo.stargazers_count}
-                        </span>
+                    <div className="bg-gray-50 rounded-lg p-3 text-center border border-gray-100">
+                      <Users className="w-4 h-4 text-teal-600 mx-auto mb-1" />
+                      <span className="block text-lg font-semibold text-gray-800">
+                        {userData?.followers || 0}
                       </span>
-                      <span className="flex items-center space-x-1">
-                        <GitFork size={14} />
-                        <span className="text-xs font-kumbh font-medium">
-                          {repo.forks_count}
-                        </span>
-                      </span>
+                      <span className="text-xs text-gray-500">Followers</span>
                     </div>
                   </div>
-                  {repo.language && (
-                    <div className="flex items-center space-x-2 mt-3">
-                      <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
-                      <span className="text-xs font-kumbh font-medium text-gray-400">
-                        {repo.language}
-                      </span>
-                    </div>
-                  )}
                 </div>
-              </a>
-            ))}
+              )}
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="lg:col-span-9 space-y-6">
+            {/* Contribution Graph */}
+            <div className="bg-[#dee1e4] rounded-lg border border-gray-200 p-5 shadow-sm">
+              <h3 className="text-base font-semibold text-gray-800 mb-4 flex items-center">
+                <GitBranch className="w-4 h-4 text-teal-600 mr-2" />
+                Contribution Activity
+              </h3>
+              <div className="w-full">
+                <div className="hidden sm:block">
+                  <GitHubCalendar
+                    username="kartik-212004"
+                    colorScheme="light"
+                    fontSize={12}
+                    blockSize={10}
+                    blockMargin={4}
+                    hideColorLegend={false}
+                    hideMonthLabels={false}
+                    labels={{
+                      totalCount: "{{count}} contributions in the last year",
+                    }}
+                  />
+                </div>
+                <div className="block sm:hidden">
+                  <GitHubCalendar
+                    username="kartik-212004"
+                    colorScheme="light"
+                    fontSize={8}
+                    blockSize={8}
+                    blockMargin={2}
+                    hideColorLegend={true}
+                    hideMonthLabels={true}
+                    labels={{
+                      totalCount: "{{count}} contributions",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Repositories */}
+            <div className="bg-[#dee1e4] rounded-lg border border-gray-200 p-5 shadow-sm">
+              <h3 className="text-base font-semibold text-gray-800 mb-4 flex items-center">
+                <Star className="w-4 h-4 text-teal-600 mr-2" />
+                Top Repositories
+              </h3>
+              <div className="grid gap-4">
+                {repos.map((repo) => (
+                  <a
+                    key={repo.id}
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group"
+                  >
+                    <div className="bg-[#dbdcdd] p-4 rounded-lg border border-[#ced1d3] hover:border-teal-500/30 transition-colors">
+                      <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
+                        <div className="space-y-2 flex-1 min-w-0">
+                          <h4 className="font-medium text-gray-800 group-hover:text-teal-600 transition-colors truncate">
+                            {repo.name}
+                          </h4>
+                          <p className="text-sm text-gray-600 line-clamp-2">
+                            {repo.description || "No description available"}
+                          </p>
+                          {repo.language && (
+                            <div className="flex items-center">
+                              <span
+                                className="w-2.5 h-2.5 rounded-full mr-2"
+                                style={{
+                                  backgroundColor:
+                                    languageColors[repo.language] || "#9CA3AF",
+                                }}
+                              ></span>
+                              <span className="text-xs text-gray-500">
+                                {repo.language}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-4 text-gray-500 shrink-0">
+                          <span className="flex items-center gap-1">
+                            <Star className="w-4 h-4" />
+                            <span className="text-xs">
+                              {repo.stargazers_count}
+                            </span>
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <GitFork className="w-4 h-4" />
+                            <span className="text-xs">{repo.forks_count}</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
