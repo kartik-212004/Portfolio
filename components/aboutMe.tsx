@@ -29,7 +29,7 @@ const SOCIALS = [
 ] as const;
 
 const HighlightedText = ({ children }: { children: React.ReactNode }) => (
-  <span id="selected" className="font-ubuntu font-medium text-[#d1d1d6]">
+  <span id="selected" className="font-ubuntu font-light text-[#d1d1d6]">
     {children}
   </span>
 );
@@ -89,7 +89,7 @@ export default function HomePage() {
 
       <main className="container mx-auto px-4 py-12 sm:py-16 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
-          <div className="lg:col-span-2 space-y-10">
+          <div className="lg:col-span-2 font-light space-y-10">
             <h1 className="font-orbitron text-4xl font-bold tracking-tight mb-2">
               <HyperText>K a r t i k&nbsp; B h a t t</HyperText>
             </h1>
@@ -104,8 +104,8 @@ export default function HomePage() {
               <HighlightedText>Full Stack Developer</HighlightedText> and a{" "}
               2nd-year Computer Science student from India. I love building
               websites and creating seamless digital experiences. Outside of
-              coding, I&apos;m an avid reader and an adventure enthusiast who enjoys
-              going on treks and exploring new places.
+              coding, I&apos;m an avid reader and an adventure enthusiast who
+              enjoys going on treks and exploring new places.
             </Section>
 
             <Section title="What I do?">
@@ -114,10 +114,10 @@ export default function HomePage() {
               participated in over{" "}
               <HighlightedText>5+ hackathons</HighlightedText>. I believe in
               <HighlightedText> #learninginpublic</HighlightedText> and
-              constantly expanding my knowledge. In my free time, you&apos;ll often
-              find me browsing <HighlightedText>Reddit</HighlightedText> and{" "}
-              <HighlightedText>Twitter</HighlightedText>, discovering new tools,
-              trends, and tips to improve my skills each day.
+              constantly expanding my knowledge. In my free time, you&apos;ll
+              often find me browsing <HighlightedText>Reddit</HighlightedText>{" "}
+              and <HighlightedText>Twitter</HighlightedText>, discovering new
+              tools, trends, and tips to improve my skills each day.
             </Section>
           </div>
 
