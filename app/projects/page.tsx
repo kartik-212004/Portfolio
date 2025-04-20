@@ -6,8 +6,19 @@ import QuickPost from "@/public/home.png";
 import face from "@/public/hackaton.png";
 import Image from "next/image";
 import { Github, Link2Icon } from "lucide-react";
+import wallet from "../../public/wallet.png";
 
 const projects = [
+  {
+    name: "Laxmi Crypto Wallet",
+    techStack:
+      "Next.js / TypeScript / ethers.js / Blockchain / React Framer Motion / Etherium / Tailwind CSS",
+    description:
+      "A secure, client-side clean AF cryptocurrency wallet for Ethereum and Solana blockchains that doesn't suck.",
+    image: wallet,
+    live: "laxmicryptofunds.vercel.app",
+    repo: "https://github.com/kartik-212004/WalletPaglu",
+  },
   {
     name: "Quick Post",
     techStack:
