@@ -83,7 +83,7 @@ const ContactForm: React.FC = () => {
               Get in Touch
             </h2>
             <p className="font-sans text-gray-400 text-sm sm:text-lg">
-              I look forward to hearing from you. Please contact us via email
+              I look forward to hearing from you. Please contact me via email
               <a
                 href="mailto:kartik200421@gmail.com"
                 className="font-sans text-cyan-400 underline ml-1"
